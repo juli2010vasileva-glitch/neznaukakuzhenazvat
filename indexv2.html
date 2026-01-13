@@ -357,8 +357,9 @@
         }
 
         .gift-title::before {
-            content: '🎁';
-            font-size: 1em;
+            content: '✦';
+            font-size: 1.1em;
+            color: var(--accent-purple);
         }
 
         .gift-reason {
@@ -380,71 +381,31 @@
         .marketplace-link {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 14px;
-            background: rgba(139, 95, 191, 0.1);
-            border-radius: 20px;
-            color: var(--primary-purple);
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 8px;
+            color: #FF69B4;
             text-decoration: none;
-            font-size: 0.85em;
-            font-weight: 500;
+            font-size: 0.9em;
+            font-weight: 600;
             transition: var(--transition);
-            border: 1px solid rgba(139, 95, 191, 0.2);
+            border: 2px solid rgba(255, 105, 180, 0.2);
+            flex: 1;
+            justify-content: center;
+            min-width: 200px;
         }
 
         .marketplace-link:hover {
-            background: var(--gradient);
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(139, 95, 191, 0.2);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+            border-color: transparent;
         }
 
         .marketplace-link i {
-            font-size: 1.1em;
-        }
-
-        .marketplace-link.ozon {
-            background: rgba(0, 102, 255, 0.1);
-            border-color: rgba(0, 102, 255, 0.2);
-            color: #0066FF;
-        }
-
-        .marketplace-link.ozon:hover {
-            background: linear-gradient(135deg, #0066FF 0%, #0044CC 100%);
-            color: white;
-        }
-
-        .marketplace-link.wildberries {
-            background: rgba(255, 105, 180, 0.1);
-            border-color: rgba(255, 105, 180, 0.2);
-            color: #FF69B4;
-        }
-
-        .marketplace-link.wildberries:hover {
-            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
-            color: white;
-        }
-
-        .marketplace-link.yandex {
-            background: rgba(255, 204, 0, 0.1);
-            border-color: rgba(255, 204, 0, 0.2);
-            color: #FFCC00;
-        }
-
-        .marketplace-link.yandex:hover {
-            background: linear-gradient(135deg, #FFCC00 0%, #FF9900 100%);
-            color: white;
-        }
-
-        .marketplace-link.ali {
-            background: rgba(255, 69, 0, 0.1);
-            border-color: rgba(255, 69, 0, 0.2);
-            color: #FF4500;
-        }
-
-        .marketplace-link.ali:hover {
-            background: linear-gradient(135deg, #FF4500 0%, #CC3700 100%);
-            color: white;
+            font-size: 1.2em;
         }
 
         .hidden {
@@ -465,6 +426,30 @@
 
         .gift-category:not(.hidden) {
             animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Категории иконок */
+        .category-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        /* Минималистичные иконки для кнопок категорий */
+        .icon-mom::before { content: '👩'; }
+        .icon-dad::before { content: '👨'; }
+        .icon-sister::before { content: '👧'; }
+        .icon-brother::before { content: '👦'; }
+        .icon-girlfriend::before { content: '💁'; }
+        .icon-friend::before { content: '👤'; }
+
+        /* Иконки в заголовках подарков */
+        .gift-icon {
+            font-size: 1.2em;
+            margin-right: 10px;
+            opacity: 0.8;
         }
 
         /* Адаптивность */
@@ -504,6 +489,10 @@
             .header h1 {
                 font-size: 2.8em;
             }
+            
+            .marketplace-link {
+                min-width: 150px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -534,6 +523,10 @@
             
             .marketplace-links {
                 justify-content: center;
+            }
+            
+            .marketplace-link {
+                min-width: 100%;
             }
         }
 
@@ -567,8 +560,8 @@
                 height: 180px;
             }
             
-            .marketplace-link {
-                padding: 6px 12px;
+            .category-btn {
+                padding: 8px 12px;
                 font-size: 0.8em;
             }
         }
@@ -608,29 +601,54 @@
             font-size: 0.9em;
             border-top: 1px solid rgba(139, 95, 191, 0.1);
         }
+
+        /* Индикатор Wildberries */
+        .wb-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 4px;
+            font-size: 0.8em;
+            color: #FF69B4;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <!-- Верхняя панель с кнопками -->
     <div class="topbar">
         <div class="logo">
-            <div class="logo-icon">🎁</div>
+            <div class="logo-icon">✦</div>
             <div class="logo-text">Gift Ideas</div>
         </div>
         <div class="category-buttons">
-            <button class="category-btn" onclick="showGifts('mom')">Маме</button>
-            <button class="category-btn" onclick="showGifts('dad')">Папе</button>
-            <button class="category-btn" onclick="showGifts('sister')">Сестре</button>
-            <button class="category-btn" onclick="showGifts('brother')">Брату</button>
-            <button class="category-btn" onclick="showGifts('girlfriend')">Подруге</button>
-            <button class="category-btn" onclick="showGifts('friend')">Другу</button>
+            <button class="category-btn" onclick="showGifts('mom')">
+                <span class="icon-mom"></span> Маме
+            </button>
+            <button class="category-btn" onclick="showGifts('dad')">
+                <span class="icon-dad"></span> Папе
+            </button>
+            <button class="category-btn" onclick="showGifts('sister')">
+                <span class="icon-sister"></span> Сестре
+            </button>
+            <button class="category-btn" onclick="showGifts('brother')">
+                <span class="icon-brother"></span> Брату
+            </button>
+            <button class="category-btn" onclick="showGifts('girlfriend')">
+                <span class="icon-girlfriend"></span> Подруге
+            </button>
+            <button class="category-btn" onclick="showGifts('friend')">
+                <span class="icon-friend"></span> Другу
+            </button>
         </div>
         <div class="topbar-controls">
             <button class="theme-toggle" onclick="toggleTheme()">
                 <span>🌙</span> Тема
             </button>
             <button class="home-button" id="homeButton" onclick="goHome()">
-                <span>🏠</span> На главную
+                <span>◀</span> Назад
             </button>
         </div>
     </div>
@@ -640,8 +658,12 @@
         <div class="header" id="header">
             <h1>Найди идеальный подарок</h1>
             <div class="intro-section">
-                <p>Ищете вдохновение для подарка? Мы собрали <span class="highlight">тщательно подобранные идеи</span> для ваших близких, с объяснениями, почему именно этот подарок станет особенным.</p>
-                <p>Каждая идея сопровождается фотографией и ссылками на маркетплейсы, где можно приобрести подарок.</p>
+                <p>Ищете вдохновение для подарка? Мы собрали <span class="highlight">тщательно подобранные идеи</span> для ваших близких.</p>
+                <p>Каждая идея сопровождается фотографией и ссылкой на Wildberries, где можно приобрести подарок.</p>
+                <div class="wb-badge">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Все товары доступны на Wildberries</span>
+                </div>
             </div>
         </div>
 
@@ -655,14 +677,8 @@
                         <div class="gift-title">Плед с рукавами</div>
                         <div class="gift-reason">Уютный и практичный подарок, который позволит маме согреться и заниматься своими делами одновременно.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/pledy-32024/?text=плед+с+рукавами" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=плед+с+рукавами" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--pledy/55419/list?text=плед+с+рукавами" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=плед+с+рукавами" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -672,14 +688,8 @@
                         <div class="gift-title">Набор качественной косметики</div>
                         <div class="gift-reason">Позволит маме почувствовать заботу о себе и уделить время собственному уходу.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/nabory-kosmetiki-12317/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=набор+косметики+подарочный" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--podarochnye-nabory-kosmetiki/18035590/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=набор+косметики+подарочный" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -689,14 +699,8 @@
                         <div class="gift-title">Фотоальбом с семейными фотографиями</div>
                         <div class="gift-reason">Вызовет теплые воспоминания и покажет, как вы цените семейные моменты.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/fotoalbomy-15959/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=фотоальбом+семейный" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--fotoalbomy/18037381/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=фотоальбом+семейный" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -706,14 +710,8 @@
                         <div class="gift-title">Комнатное растение в красивом горшке</div>
                         <div class="gift-reason">Добавит уюта в дом и будет напоминать о вашей заботе каждый день.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/komnatnye-rasteniya-10500/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=комнатное+растение+в+горшке" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--komnatnye-rasteniia/18038751/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=комнатное+растение+в+горшке" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -723,14 +721,8 @@
                         <div class="gift-title">Сертификат в спа-салон</div>
                         <div class="gift-reason">Подарит маме возможность расслабиться и отдохнуть от повседневных забот.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/sertifikaty-1559/?text=спа+сертификат" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=сертификат+в+спа+салон" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--podarochnye-sertifikaty/18036421/list?text=спа+сертификат" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=сертификат+в+спа+салон" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -746,14 +738,8 @@
                         <div class="gift-title">Многофункциональный инструмент</div>
                         <div class="gift-reason">Практичный подарок, который пригодится в хозяйстве и будет оценен по достоинству.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/mnogofunktsionalnye-instrumenty-15378/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=мультитул+инструмент" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--mnogofunktsionalnye-instrumenty/91491/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=мультитул+инструмент" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -763,14 +749,8 @@
                         <div class="gift-title">Книга по его интересам</div>
                         <div class="gift-reason">Покажет, что вы знаете его увлечения и поддерживаете их.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/knigi-16500/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/knigi/hudozhestvennaya-literatura" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--knigi/18509620/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/knigi/hudozhestvennaya-literatura" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -780,14 +760,8 @@
                         <div class="gift-title">Набор для барбекю</div>
                         <div class="gift-reason">Позволит папе почувствовать себя шеф-поваром на свежем воздухе.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/nabory-dlya-barbekyu-12375/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+барбекю" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--nabory-dlia-barbekiu/18039161/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+барбекю" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -797,14 +771,8 @@
                         <div class="gift-title">Умные часы</div>
                         <div class="gift-reason">Современный гаджет, который поможет следить за здоровьем и оставаться на связи.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/smart-chasy-7502/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/elektronika/smart-chasy-i-fitnes-braslety/smart-chasy" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--umnye-chasy/18041051/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/elektronika/smart-chasy-i-fitnes-braslety/smart-chasy" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -814,14 +782,8 @@
                         <div class="gift-title">Беспроводные наушники</div>
                         <div class="gift-reason">Позволят наслаждаться музыкой и аудиокнигами без лишних проводов.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/besprovodnye-naushniki-12369/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/elektronika/audio-i-video/naushniki-i-garnitury/besprovodnye-naushniki" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--besprovodnye-naushniki/56364/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/elektronika/audio-i-video/naushniki-i-garnitury/besprovodnye-naushniki" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -837,14 +799,8 @@
                         <div class="gift-title">Бижутерия ручной работы</div>
                         <div class="gift-reason">Дополнит ее образ и покажет ваше внимание к ее стилю.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/ukrasheniya-11698/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=бижутерия+подарок" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--ukrasheniia/18039441/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=бижутерия+подарок" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -854,14 +810,8 @@
                         <div class="gift-title">Стильная сумка</div>
                         <div class="gift-reason">Практичный и модный аксессуар, который будет использоваться ежедневно.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/sumki-zhenskie-15901/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/zhenshchinam/sumki" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--zhenskie-sumki/18039671/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/zhenshchinam/sumki" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -871,14 +821,8 @@
                         <div class="gift-title">Сертификат в любимый магазин</div>
                         <div class="gift-reason">Позволит ей самой выбрать то, что действительно хочет.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/sertifikaty-1559/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=подарочный+сертификат" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--podarochnye-sertifikaty/18036421/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=подарочный+сертификат" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -888,14 +832,8 @@
                         <div class="gift-title">Набор для творчества</div>
                         <div class="gift-reason">Поможет развить хобби и провести время с удовольствием.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/nabory-dlya-tvorchestva-12370/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+творчества+взрослым" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--nabory-dlia-tvorchestva/18039151/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+творчества+взрослым" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -905,14 +843,8 @@
                         <div class="gift-title">Селфи-кольцо с подсветкой</div>
                         <div class="gift-reason">Практичный подарок для создания красивых фотографий.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/aksessuary-dlya-selfi-12552/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=селфи+кольцо+светодиодное" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--aksessuary-dlia-selfi/18038231/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=селфи+кольцо+светодиодное" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -928,14 +860,8 @@
                         <div class="gift-title">Игровая консоль</div>
                         <div class="gift-reason">Подарит часы увлекательного времяпрепровождения.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/igrovye-pristavki-12356/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/elektronika/igrovye-pristavki-i-aksessuary/igrovye-pristavki" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--igrovye-konsoli/18040441/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/elektronika/igrovye-pristavki-i-aksessuary/igrovye-pristavki" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -945,14 +871,8 @@
                         <div class="gift-title">Спортивный инвентарь</div>
                         <div class="gift-reason">Поддержит его активный образ жизни и заботу о здоровье.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/sportivnyy-inventar-18001/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/sport/sportivnyy-inventar" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--sportivnyi-inventar/18041531/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/sport/sportivnyy-inventar" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -962,14 +882,8 @@
                         <div class="gift-title">Новейший гаджет</div>
                         <div class="gift-reason">Будет оценен по достоинству, если брат увлекается технологиями.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/highlight/novye-gadzhety-342187/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/elektronika" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--elektronika/54410" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/elektronika" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -979,14 +893,8 @@
                         <div class="gift-title">Настольная игра</div>
                         <div class="gift-reason">Отличный повод провести время вместе с семьей или друзьями.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/nastolnye-igry-12362/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=настольные+игры+для+компании" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--nastolnye-igry/18040341/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=настольные+игры+для+компании" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -996,14 +904,8 @@
                         <div class="gift-title">Билеты на концерт</div>
                         <div class="gift-reason">Подарит незабываемые эмоции и покажет, что вы знаете его вкусы.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/bilety-na-meropriyatiya-11816/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=билеты+на+концерт" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--bilety-na-meropriiatiia/18038021/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=билеты+на+концерт" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -1019,14 +921,8 @@
                         <div class="gift-title">Цветы и набор сладостей</div>
                         <div class="gift-reason">Классический подарок, который всегда поднимает настроение.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/tsvety-i-bukety-12318/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=цветы+доставка" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--sladosti/18040981/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=цветы+доставка" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -1036,14 +932,8 @@
                         <div class="gift-title">Подарочный набор косметики</div>
                         <div class="gift-reason">Позволит побаловать себя и уделить время уходу.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/nabory-kosmetiki-12317/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=подарочный+набор+косметики" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--podarochnye-nabory-kosmetiki/18035590/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=подарочный+набор+косметики" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -1053,14 +943,8 @@
                         <div class="gift-title">Сертификат на мастер-класс</div>
                         <div class="gift-reason">Подарит новые впечатления и время, проведенное вместе.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/sertifikaty-na-master-klassy-1558/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=сертификат+на+мастер+класс" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--master-klassy/18040331/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=сертификат+на+мастер+класс" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -1070,14 +954,8 @@
                         <div class="gift-title">Мягкая игрушка премиум</div>
                         <div class="gift-reason">Милый подарок, который будет напоминать о вашей дружбе.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/myagkie-igrushki-12361/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=большая+мягкая+игрушка" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--miagkie-igrushki/18040271/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=большая+мягкая+игрушка" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -1087,14 +965,8 @@
                         <div class="gift-title">Дизайнерский шарф</div>
                         <div class="gift-reason">Стильный аксессуар, который дополнит любой образ.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/sharki-zhenskie-15910/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=дизайнерский+шарф" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--zhenskie-sharfy/18041831/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=дизайнерский+шарф" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -1110,14 +982,8 @@
                         <div class="gift-title">Набор для пикника</div>
                         <div class="gift-reason">Отличный повод провести время на природе вместе.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/nabory-dlya-piknika-12374/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+пикника" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--nabory-dlia-piknika/18039141/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+пикника" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -1127,14 +993,8 @@
                         <div class="gift-title">Кружка с персонализацией</div>
                         <div class="gift-reason">Персонализированный подарок с особым смыслом.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/kruzhki-12238/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=кружка+с+персонализацией" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--kruzhki/18040071/list?text=персонализированная" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=кружка+с+персонализацией" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -1144,14 +1004,8 @@
                         <div class="gift-title">Набор для хобби</div>
                         <div class="gift-reason">Покажет поддержку его увлечений.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/nabory-dlya-khobbi-12371/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+хобби+мужской" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--nabory-dlia-khobbi/18039131/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+хобби+мужской" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -1161,14 +1015,8 @@
                         <div class="gift-title">Сертификат в кино</div>
                         <div class="gift-reason">Возможность вместе провести время и получить новые впечатления.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/sertifikaty-v-kino-1560/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=сертификат+в+кино" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--bilety-v-kino/18038011/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/0/search.aspx?search=сертификат+в+кино" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -1178,14 +1026,8 @@
                         <div class="gift-title">Беспроводная колонка</div>
                         <div class="gift-reason">Сделает любую встречу с друзьями веселее с качественным звуком.</div>
                         <div class="marketplace-links">
-                            <a href="https://www.ozon.ru/category/besprovodnye-kolonki-12368/" target="_blank" class="marketplace-link ozon">
-                                <i class="fas fa-shopping-cart"></i> OZON
-                            </a>
-                            <a href="https://www.wildberries.ru/catalog/elektronika/audio-i-video/kolonki-i-audiosistemy/portativnye-kolonki" target="_blank" class="marketplace-link wildberries">
-                                <i class="fas fa-shopping-bag"></i> Wildberries
-                            </a>
-                            <a href="https://market.yandex.ru/catalog--portativnye-kolonki/56369/list" target="_blank" class="marketplace-link yandex">
-                                <i class="fab fa-yandex"></i> Яндекс.Маркет
+                            <a href="https://www.wildberries.ru/catalog/elektronika/audio-i-video/kolonki-i-audiosistemy/portativnye-kolonki" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
                     </div>
@@ -1195,7 +1037,7 @@
     </main>
 
     <div class="footer">
-        <p>© 2024 Gift Ideas. Все права защищены. Идеи подарков с фотографиями и ссылками на маркетплейсы.</p>
+        <p>© 2024 Gift Ideas. Все товары доступны на Wildberries.</p>
     </div>
 
     <script>
