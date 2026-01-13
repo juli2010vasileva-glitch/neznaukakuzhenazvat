@@ -152,9 +152,30 @@
         }
 
         .category-icon {
-            font-size: 1.1em;
+            font-size: 1.3em;
             opacity: 0.9;
+            filter: grayscale(100%) contrast(0.5);
+            transition: filter 0.3s;
         }
+
+        .category-btn:hover .category-icon,
+        .category-btn.active .category-icon {
+            filter: grayscale(0%) contrast(1);
+        }
+
+        .silhouette-woman { color: #8B5FBF; }
+        .silhouette-man { color: #5A189A; }
+        .silhouette-women { color: #9D4EDD; }
+        .silhouette-men { color: #7B2CBF; }
+        .silhouette-heart { color: #FF69B4; }
+        .silhouette-handshake { color: #6B8E23; }
+
+        .dark-theme .silhouette-woman { color: #E0AAFF; }
+        .dark-theme .silhouette-man { color: #C77DFF; }
+        .dark-theme .silhouette-women { color: #9D4EDD; }
+        .dark-theme .silhouette-men { color: #7B2CBF; }
+        .dark-theme .silhouette-heart { color: #FF69B4; }
+        .dark-theme .silhouette-handshake { color: #9ACD32; }
 
         .topbar-controls {
             display: flex;
@@ -231,13 +252,6 @@
             opacity: 0.9;
         }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
         .intro-section {
             background: var(--intro-bg);
             padding: 40px;
@@ -247,6 +261,7 @@
             border: 2px solid var(--intro-border);
             position: relative;
             overflow: hidden;
+            margin-bottom: 40px;
         }
 
         .intro-section::before {
@@ -265,83 +280,6 @@
             margin-bottom: 20px;
             position: relative;
             z-index: 1;
-        }
-
-        .how-to-section {
-            background: var(--howto-bg);
-            padding: 40px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .how-to-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
-        }
-
-        .how-to-title {
-            font-size: 1.8em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--dark-purple);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .how-to-title::before {
-            content: '❖';
-            font-size: 1.2em;
-            color: var(--accent-purple);
-        }
-
-        .how-to-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .step {
-            display: flex;
-            gap: 15px;
-            align-items: flex-start;
-        }
-
-        .step-number {
-            width: 30px;
-            height: 30px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 0.9em;
-            flex-shrink: 0;
-        }
-
-        .step-content {
-            flex: 1;
-        }
-
-        .step-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--primary-purple);
-        }
-
-        .step-description {
-            color: var(--text-color);
-            opacity: 0.9;
-            line-height: 1.6;
         }
 
         .wb-badge {
@@ -363,6 +301,7 @@
 
         .gifts-container {
             width: 100%;
+            margin-bottom: 60px;
         }
 
         .gift-category {
@@ -526,6 +465,95 @@
             font-size: 1.2em;
         }
 
+        .how-to-section {
+            background: var(--howto-bg);
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .how-to-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .how-to-title {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--dark-purple);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .how-to-title::before {
+            content: '❖';
+            font-size: 1.5em;
+            color: var(--accent-purple);
+        }
+
+        .how-to-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .step {
+            background: var(--card-color);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(139, 95, 191, 0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(139, 95, 191, 0.1);
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 95, 191, 0.15);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-purple);
+            font-size: 1.2em;
+        }
+
+        .step-description {
+            color: var(--text-color);
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
         .hidden {
             display: none !important;
         }
@@ -556,7 +584,7 @@
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
             
-            .content-grid {
+            .how-to-steps {
                 grid-template-columns: 1fr;
             }
         }
@@ -627,8 +655,8 @@
                 min-width: 100%;
             }
             
-            .content-grid {
-                gap: 20px;
+            .how-to-title {
+                font-size: 1.6em;
             }
         }
 
@@ -672,7 +700,15 @@
             }
             
             .category-btn .category-icon {
-                font-size: 1.3em;
+                font-size: 1.5em;
+            }
+            
+            .how-to-section {
+                padding: 20px;
+            }
+            
+            .step {
+                padding: 20px;
             }
         }
 
@@ -741,27 +777,27 @@
         </div>
         <div class="category-buttons">
             <button class="category-btn" onclick="showGifts('mom')">
-                <span class="category-icon">♀</span>
+                <span class="category-icon silhouette-woman">👩</span>
                 <span>Маме</span>
             </button>
             <button class="category-btn" onclick="showGifts('dad')">
-                <span class="category-icon">♂</span>
+                <span class="category-icon silhouette-man">👨</span>
                 <span>Папе</span>
             </button>
             <button class="category-btn" onclick="showGifts('sister')">
-                <span class="category-icon">👭</span>
+                <span class="category-icon silhouette-women">👭</span>
                 <span>Сестре</span>
             </button>
             <button class="category-btn" onclick="showGifts('brother')">
-                <span class="category-icon">👬</span>
+                <span class="category-icon silhouette-men">👬</span>
                 <span>Брату</span>
             </button>
             <button class="category-btn" onclick="showGifts('girlfriend')">
-                <span class="category-icon">💝</span>
+                <span class="category-icon silhouette-heart">❤️</span>
                 <span>Подруге</span>
             </button>
             <button class="category-btn" onclick="showGifts('friend')">
-                <span class="category-icon">🤝</span>
+                <span class="category-icon silhouette-handshake">🤝</span>
                 <span>Другу</span>
             </button>
         </div>
@@ -781,41 +817,12 @@
             <h1>Найди идеальный подарок</h1>
         </div>
 
-        <div class="content-grid">
-            <div class="intro-section">
-                <p>Ищете вдохновение для подарка? Мы собрали <span class="highlight">тщательно подобранные идеи</span> для ваших близких.</p>
-                <p>Каждая идея сопровождается фотографией и ссылкой на Wildberries, где можно приобрести подарок.</p>
-                <div class="wb-badge">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span>Все товары доступны на Wildberries</span>
-                </div>
-            </div>
-
-            <div class="how-to-section">
-                <div class="how-to-title">Как это работает?</div>
-                <div class="how-to-steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <div class="step-title">Выберите категорию</div>
-                            <div class="step-description">Выберите категорию получателя в меню выше, чтобы увидеть персонализированные идеи подарков.</div>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <div class="step-title">Изучите идеи</div>
-                            <div class="step-description">Каждая идея содержит подробное описание и ссылку для покупки на популярном маркетплейсе.</div>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <div class="step-title">Найдите подарок</div>
-                            <div class="step-description">Наведите курсор на любой подарок, чтобы увидеть где его можно приобрести.</div>
-                        </div>
-                    </div>
-                </div>
+        <div class="intro-section">
+            <p>Ищете вдохновение для подарка? Мы собрали <span class="highlight">тщательно подобранные идеи</span> для ваших близких.</p>
+            <p>Каждая идея сопровождается фотографией и ссылкой на Wildberries, где можно приобрести подарок.</p>
+            <div class="wb-badge">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Все товары доступны на Wildberries</span>
             </div>
         </div>
 
@@ -1216,10 +1223,38 @@
                 </div>
             </div>
         </div>
+
+        <!-- Секция "Как это работает?" -->
+        <div class="how-to-section">
+            <div class="how-to-title">Как это работает?</div>
+            <div class="how-to-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Выберите категорию</div>
+                        <div class="step-description">Выберите категорию получателя в меню выше, чтобы увидеть персонализированные идеи подарков.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Изучите идеи</div>
+                        <div class="step-description">Каждая идея содержит подробное описание и ссылку для покупки на популярном маркетплейсе.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Найдите подарок</div>
+                        <div class="step-description">Наведите курсор на любой подарок, чтобы увидеть где его можно приобрести.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <div class="footer">
-        <p>© 2024 Gift Ideas. Все товары доступны на Wildberries.</p>
+        <p>© 2025 Gift Ideas.Сделано с любовью для ваших близких.</p>
     </div>
 
     <script>
@@ -1248,10 +1283,16 @@
             const header = document.getElementById('header');
             header.classList.add('hidden');
             
-            // Скрываем контент-грид
-            const contentGrid = document.querySelector('.content-grid');
-            if (contentGrid) {
-                contentGrid.classList.add('hidden');
+            // Скрываем интро-секцию
+            const introSection = document.querySelector('.intro-section');
+            if (introSection) {
+                introSection.classList.add('hidden');
+            }
+            
+            // Скрываем секцию "Как это работает?"
+            const howToSection = document.querySelector('.how-to-section');
+            if (howToSection) {
+                howToSection.classList.add('hidden');
             }
             
             // Показываем кнопку "На главную"
@@ -1299,10 +1340,16 @@
             const header = document.getElementById('header');
             header.classList.remove('hidden');
             
-            // Показываем контент-грид
-            const contentGrid = document.querySelector('.content-grid');
-            if (contentGrid) {
-                contentGrid.classList.remove('hidden');
+            // Показываем интро-секцию
+            const introSection = document.querySelector('.intro-section');
+            if (introSection) {
+                introSection.classList.remove('hidden');
+            }
+            
+            // Показываем секцию "Как это работает?"
+            const howToSection = document.querySelector('.how-to-section');
+            if (howToSection) {
+                howToSection.classList.remove('hidden');
             }
             
             // Скрываем кнопку "На главную"
