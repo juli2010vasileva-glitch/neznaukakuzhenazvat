@@ -21,6 +21,7 @@
             --shadow-hover: 0 12px 40px rgba(139, 95, 191, 0.15);
             --intro-border: #E0AAFF;
             --intro-bg: #fafaff;
+            --howto-bg: #f5f2ff;
             --gradient: linear-gradient(135deg, #8B5FBF 0%, #9D4EDD 100%);
             --border-radius: 16px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -40,6 +41,7 @@
             --shadow-hover: 0 12px 40px rgba(139, 95, 191, 0.25);
             --intro-border: #5A189A;
             --intro-bg: #1e1b2e;
+            --howto-bg: #2a2540;
             --gradient: linear-gradient(135deg, #5A189A 0%, #7B2CBF 100%);
         }
 
@@ -112,14 +114,14 @@
 
         .category-buttons {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             flex: 1;
             justify-content: center;
             margin: 0 40px;
         }
 
         .category-btn {
-            padding: 12px 24px;
+            padding: 12px 20px;
             background: transparent;
             border: 2px solid var(--light-purple);
             border-radius: 50px;
@@ -129,6 +131,9 @@
             font-weight: 600;
             transition: var(--transition);
             white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .category-btn:hover {
@@ -144,6 +149,11 @@
             border-color: transparent;
             color: white;
             box-shadow: 0 4px 15px rgba(139, 95, 191, 0.2);
+        }
+
+        .category-icon {
+            font-size: 1.1em;
+            opacity: 0.9;
         }
 
         .topbar-controls {
@@ -221,12 +231,18 @@
             opacity: 0.9;
         }
 
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
         .intro-section {
             background: var(--intro-bg);
             padding: 40px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            margin-bottom: 40px;
             text-align: center;
             border: 2px solid var(--intro-border);
             position: relative;
@@ -249,6 +265,100 @@
             margin-bottom: 20px;
             position: relative;
             z-index: 1;
+        }
+
+        .how-to-section {
+            background: var(--howto-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .how-to-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .how-to-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark-purple);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .how-to-title::before {
+            content: '❖';
+            font-size: 1.2em;
+            color: var(--accent-purple);
+        }
+
+        .how-to-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--primary-purple);
+        }
+
+        .step-description {
+            color: var(--text-color);
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .wb-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 8px;
+            font-size: 0.9em;
+            color: #FF69B4;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 105, 180, 0.2);
+        }
+
+        .wb-badge i {
+            font-size: 1.2em;
         }
 
         .gifts-container {
@@ -376,6 +486,14 @@
             gap: 10px;
             flex-wrap: wrap;
             margin-top: 15px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .gift-item:hover .marketplace-links {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .marketplace-link {
@@ -428,30 +546,6 @@
             animation: fadeIn 0.6s ease-out;
         }
 
-        /* Категории иконок */
-        .category-icon {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-
-        /* Минималистичные иконки для кнопок категорий */
-        .icon-mom::before { content: '👩'; }
-        .icon-dad::before { content: '👨'; }
-        .icon-sister::before { content: '👧'; }
-        .icon-brother::before { content: '👦'; }
-        .icon-girlfriend::before { content: '💁'; }
-        .icon-friend::before { content: '👤'; }
-
-        /* Иконки в заголовках подарков */
-        .gift-icon {
-            font-size: 1.2em;
-            margin-right: 10px;
-            opacity: 0.8;
-        }
-
         /* Адаптивность */
         @media (max-width: 1200px) {
             .category-buttons {
@@ -460,6 +554,10 @@
             
             .gift-list {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -512,7 +610,7 @@
                 font-size: 2.2em;
             }
             
-            .intro-section {
+            .intro-section, .how-to-section {
                 padding: 25px;
             }
             
@@ -527,6 +625,10 @@
             
             .marketplace-link {
                 min-width: 100%;
+            }
+            
+            .content-grid {
+                gap: 20px;
             }
         }
 
@@ -543,7 +645,7 @@
                 font-size: 1.8em;
             }
             
-            .intro-section p {
+            .intro-section p, .how-to-section p {
                 font-size: 1.1em;
             }
             
@@ -563,6 +665,14 @@
             .category-btn {
                 padding: 8px 12px;
                 font-size: 0.8em;
+            }
+            
+            .category-btn span:not(.category-icon) {
+                display: none;
+            }
+            
+            .category-btn .category-icon {
+                font-size: 1.3em;
             }
         }
 
@@ -602,17 +712,23 @@
             border-top: 1px solid rgba(139, 95, 191, 0.1);
         }
 
-        /* Индикатор Wildberries */
-        .wb-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 4px 10px;
-            background: rgba(255, 105, 180, 0.1);
+        /* Индикатор наведения */
+        .hover-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(139, 95, 191, 0.9);
+            color: white;
+            padding: 5px 10px;
             border-radius: 4px;
             font-size: 0.8em;
-            color: #FF69B4;
-            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .gift-item:hover .hover-hint {
+            opacity: 1;
         }
     </style>
 </head>
@@ -625,22 +741,28 @@
         </div>
         <div class="category-buttons">
             <button class="category-btn" onclick="showGifts('mom')">
-                <span class="icon-mom"></span> Маме
+                <span class="category-icon">♀</span>
+                <span>Маме</span>
             </button>
             <button class="category-btn" onclick="showGifts('dad')">
-                <span class="icon-dad"></span> Папе
+                <span class="category-icon">♂</span>
+                <span>Папе</span>
             </button>
             <button class="category-btn" onclick="showGifts('sister')">
-                <span class="icon-sister"></span> Сестре
+                <span class="category-icon">👭</span>
+                <span>Сестре</span>
             </button>
             <button class="category-btn" onclick="showGifts('brother')">
-                <span class="icon-brother"></span> Брату
+                <span class="category-icon">👬</span>
+                <span>Брату</span>
             </button>
             <button class="category-btn" onclick="showGifts('girlfriend')">
-                <span class="icon-girlfriend"></span> Подруге
+                <span class="category-icon">💝</span>
+                <span>Подруге</span>
             </button>
             <button class="category-btn" onclick="showGifts('friend')">
-                <span class="icon-friend"></span> Другу
+                <span class="category-icon">🤝</span>
+                <span>Другу</span>
             </button>
         </div>
         <div class="topbar-controls">
@@ -657,12 +779,42 @@
     <main class="main-content">
         <div class="header" id="header">
             <h1>Найди идеальный подарок</h1>
+        </div>
+
+        <div class="content-grid">
             <div class="intro-section">
                 <p>Ищете вдохновение для подарка? Мы собрали <span class="highlight">тщательно подобранные идеи</span> для ваших близких.</p>
                 <p>Каждая идея сопровождается фотографией и ссылкой на Wildberries, где можно приобрести подарок.</p>
                 <div class="wb-badge">
                     <i class="fas fa-shopping-bag"></i>
                     <span>Все товары доступны на Wildberries</span>
+                </div>
+            </div>
+
+            <div class="how-to-section">
+                <div class="how-to-title">Как это работает?</div>
+                <div class="how-to-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Выберите категорию</div>
+                            <div class="step-description">Выберите категорию получателя в меню выше, чтобы увидеть персонализированные идеи подарков.</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Изучите идеи</div>
+                            <div class="step-description">Каждая идея содержит подробное описание и ссылку для покупки на популярном маркетплейсе.</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Найдите подарок</div>
+                            <div class="step-description">Наведите курсор на любой подарок, чтобы увидеть где его можно приобрести.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -681,6 +833,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -692,6 +845,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -703,6 +857,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -714,6 +869,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -725,6 +881,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                 </div>
             </div>
@@ -742,6 +899,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -753,6 +911,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -764,6 +923,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -775,6 +935,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -786,6 +947,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                 </div>
             </div>
@@ -803,6 +965,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -814,6 +977,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -825,6 +989,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -836,6 +1001,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -847,6 +1013,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                 </div>
             </div>
@@ -864,6 +1031,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -875,6 +1043,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -886,6 +1055,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -897,6 +1067,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -908,6 +1079,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                 </div>
             </div>
@@ -925,6 +1097,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -936,6 +1109,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -947,6 +1121,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -958,6 +1133,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -969,6 +1145,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                 </div>
             </div>
@@ -986,6 +1163,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -997,6 +1175,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -1008,6 +1187,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -1019,6 +1199,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                     
                     <div class="gift-item">
@@ -1030,6 +1211,7 @@
                                 <i class="fas fa-shopping-bag"></i> Купить на Wildberries
                             </a>
                         </div>
+                        <div class="hover-hint">Наведите для ссылки</div>
                     </div>
                 </div>
             </div>
@@ -1065,6 +1247,12 @@
             // Скрываем заголовок и описание сайта
             const header = document.getElementById('header');
             header.classList.add('hidden');
+            
+            // Скрываем контент-грид
+            const contentGrid = document.querySelector('.content-grid');
+            if (contentGrid) {
+                contentGrid.classList.add('hidden');
+            }
             
             // Показываем кнопку "На главную"
             const homeButton = document.getElementById('homeButton');
@@ -1110,6 +1298,12 @@
             // Показываем заголовок и описание сайта
             const header = document.getElementById('header');
             header.classList.remove('hidden');
+            
+            // Показываем контент-грид
+            const contentGrid = document.querySelector('.content-grid');
+            if (contentGrid) {
+                contentGrid.classList.remove('hidden');
+            }
             
             // Скрываем кнопку "На главную"
             const homeButton = document.getElementById('homeButton');
