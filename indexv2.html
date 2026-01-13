@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Идеи для подарков</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff7eb9;
+            --secondary-color: #b5e8e0;
+            --accent-color: #ffd166;
+            --text-color: #5a5a5a;
+            --bg-color: #f9f9f9;
+            --topbar-color: #fff5f8;
+            --card-color: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --intro-border: #ffd1dc;
+            --intro-bg: #fefefe;
+        }
+
+        .dark-theme {
+            --primary-color: #ffffff;
+            --secondary-color: #a0a0a0;
+            --accent-color: #d0d0d0;
+            --text-color: #e0e0e0;
+            --bg-color: #1a1a1a;
+            --topbar-color: #2a2a2a;
+            --card-color: #333333;
+            --shadow: 0 4px 15px rgba(0,0,0,0.5);
+            --intro-border: #b23b61;
+            --intro-bg: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, transform 0.2s, opacity 0.3s;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 80px; /* Отступ для фиксированной верхней панели */
+        }
+
+        h1, h2, h3, .intro-section p {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Верхняя панель */
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--topbar-color);
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar h2 {
+            color: var(--text-color);
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-right: 20px;
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 10px 15px;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 20px;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .category-btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .topbar-controls {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px;
+        }
+
+        .theme-toggle, .home-button {
+            padding: 10px 15px;
+            background-color: var(--accent-color);
+            border: none;
+            border-radius: 20px;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .home-button {
+            background-color: var(--primary-color);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .home-button.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .main-content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        .gifts-container {
+            width: 100%;
+        }
+
+        .gift-category {
+            background-color: var(--card-color);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .gift-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .gift-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .gift-item {
+            background-color: var(--secondary-color);
+            padding: 18px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .gift-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            color: var(--text-color);
+        }
+
+        .gift-reason {
+            font-size: 0.95em;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .intro-section {
+            background-color: var(--intro-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 800px;
+            border: 3px solid var(--intro-border);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .intro-section p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 1024px) {
+            .category-buttons {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+            
+            .category-btn {
+                font-size: 0.85em;
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 120px;
+            }
+            
+            .topbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .category-buttons {
+                grid-template-columns: repeat(2, 1fr);
+                width: 100%;
+            }
+            
+            .topbar-controls {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .gift-category h3 {
+                font-size: 1.6em;
+            }
+            
+            .intro-section p {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .gift-category {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Верхняя панель с кнопками -->
+    <div class="topbar">
+        <h2>Идеи для подарков</h2>
+        <div class="category-buttons">
+            <button class="category-btn" onclick="showGifts('mom')">Для мамы</button>
+            <button class="category-btn" onclick="showGifts('dad')">Для папы</button>
+            <button class="category-btn" onclick="showGifts('sister')">Для сестры</button>
+            <button class="category-btn" onclick="showGifts('brother')">Для брата</button>
+            <button class="category-btn" onclick="showGifts('girlfriend')">Для подруги</button>
+            <button class="category-btn" onclick="showGifts('friend')">Для друга</button>
+        </div>
+        <div class="topbar-controls">
+            <button class="theme-toggle" onclick="toggleTheme()">🌙 Сменить тему</button>
+            <button class="home-button" id="homeButton" onclick="goHome()">🏠 На главную</button>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="main-content">
+        <div class="header" id="header">
+            <h1>Идеи для подарков</h1>
+            <div class="intro-section">
+                <p>Наш сайт поможет вам найти идеальный подарок для ваших близких. Мы собрали тщательно подобранные идеи подарков для разных категорий людей, с объяснениями, почему именно этот подарок может понравиться получателю.</p>
+                <p>Просто выберите категорию в меню сверху и найдите вдохновение для вашего следующего подарка!</p>
+            </div>
+        </div>
+
+        <div class="gifts-container">
+            <!-- Для мамы -->
+            <div id="mom" class="gift-category hidden">
+                <h3>Подарки для мамы</h3>
+                <div class="gift-list">
+                    <div class="gift-item">
+                        <div class="gift-title">Плед с рукавами</div>
+                        <div class="gift-reason">Практичный и уютный подарок, который позволит маме согреться и заниматься своими делами одновременно.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Набор качественной косметики</div>
+                        <div class="gift-reason">Позволит маме почувствовать заботу о себе и уделить время собственному уходу.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Фотоальбом с семейными фотографиями</div>
+                        <div class="gift-reason">Вызовет теплые воспоминания и покажет, как вы цените семейные моменты.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Комнатное растение в красивом горшке</div>
+                        <div class="gift-reason">Добавит уюта в дом и будет напоминать о вашей заботе каждый день.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Сертификат в спа-салон</div>
+                        <div class="gift-reason">Подарит маме возможность расслабиться и отдохнуть от повседневных забот.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Электронная книга</div>
+                        <div class="gift-reason">Позволит маме наслаждаться чтением без нагрузки на глаза, с возможностью настроить шрифт под себя.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Набор ароматических свечей</div>
+                        <div class="gift-reason">Создаст уютную атмосферу в доме и поможет маме расслабиться после тяжелого дня.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Йога-коврик и подушка для медитации</div>
+                        <div class="gift-reason">Поможет маме поддерживать физическую форму и находить моменты для ментального отдыха.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Кружка с подогревом</div>
+                        <div class="gift-reason">Позволит маме всегда наслаждаться горячим чаем или кофе, даже если она отвлеклась на другие дела.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Кулинарный мастер-класс</div>
+                        <div class="gift-reason">Подарит новые впечатления и возможность научиться готовить интересные блюда.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Для папы -->
+            <div id="dad" class="gift-category hidden">
+                <h3>Подарки для папы</h3>
+                <div class="gift-list">
+                    <div class="gift-item">
+                        <div class="gift-title">Многофункциональный инструмент</div>
+                        <div class="gift-reason">Практичный подарок, который пригодится в хозяйстве и будет оценен по достоинству.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Книга по его интересам</div>
+                        <div class="gift-reason">Покажет, что вы знаете его увлечения и поддерживаете их.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Набор для барбекю</div>
+                        <div class="gift-reason">Позволит папе почувствовать себя шеф-поваром на свежем воздухе.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Умные часы</div>
+                        <div class="gift-reason">Современный гаджет, который поможет следить за здоровьем и оставаться на связи.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Беспроводные наушники</div>
+                        <div class="gift-reason">Позволят наслаждаться музыкой и аудиокнигами без лишних проводов во время работы или отдыха.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Ремень</div>
+                        <div class="gift-reason">Будет долго служить и солидно выглядеть,такой подарок подчеркнет его статус.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Электрическая зубная щетка</div>
+                        <div class="gift-reason">Позаботится о здоровье папы, сделав ежедневную гигиену более эффективной и приятной.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Набор для ухода за обувью</div>
+                        <div class="gift-reason">Поможет папе содержать свою обувь в идеальном состоянии, что важно для его имиджа.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Портативный проектор</div>
+                        <div class="gift-reason">Позволит устроить домашний кинотеатр или смотреть спортивные матчи на большом экране.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Геймерское кресло</div>
+                        <div class="gift-reason">Обеспечит комфорт во время работы за компьютером или отдыха, поддерживая правильную осанку.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Для сестры -->
+            <div id="sister" class="gift-category hidden">
+                <h3>Подарки для сестры</h3>
+                <div class="gift-list">
+                    <div class="gift-item">
+                        <div class="gift-title">Бижутерия</div>
+                        <div class="gift-reason">Дополнит ее образ и покажет ваше внимание к ее стилю.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Сумка</div>
+                        <div class="gift-reason">Практичный и стильный аксессуар, который будет использоваться ежедневно.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Сертификат в любимый магазин</div>
+                        <div class="gift-reason">Позволит ей самой выбрать то, что действительно хочет.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Набор для творчества</div>
+                        <div class="gift-reason">Поможет развить хобби и провести время с удовольствием.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Селфи-кольцо</div>
+                        <div class="gift-reason">Практичный подарок для создания красивых фотографий.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Умная колонка</div>
+                        <div class="gift-reason">Станет помощником в бытовых вопросах и источником развлечений с голосовым управлением.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Электронный планшет для рисования</div>
+                        <div class="gift-reason">Откроет новые возможности для творчества и цифрового искусства.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Подписка на стриминговый сервис</div>
+                        <div class="gift-reason">Подарит доступ к любимым сериалам, фильмам и эксклюзивному контенту.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Набор ароматных гелей для душа и кремов</div>
+                        <div class="gift-reason">Превратит ежедневные процедуры в спа-ритуал и подарит приятные эмоции.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Красивый ежедневник и набор ручек</div>
+                        <div class="gift-reason">Поможет организовать время и дела, делая процесс планирования эстетически приятным.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Для брата -->
+            <div id="brother" class="gift-category hidden">
+                <h3>Подарки для брата</h3>
+                <div class="gift-list">
+                    <div class="gift-item">
+                        <div class="gift-title">Игровая консоль или аксессуары к ней</div>
+                        <div class="gift-reason">Подарит часы увлекательного времяпрепровождения.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Спортивный инвентарь</div>
+                        <div class="gift-reason">Поддержит его активный образ жизни и заботу о здоровье.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Гаджеты</div>
+                        <div class="gift-reason">Будет оценен по достоинству, если брат увлекается технологиями.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Настольная игра</div>
+                        <div class="gift-reason">Отличный повод провести время вместе с семьей или друзьями.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Билеты на концерт любимой группы</div>
+                        <div class="gift-reason">Подарит незабываемые эмоции и покажет, что вы знаете его вкусы.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Фитнес-браслет</div>
+                        <div class="gift-reason">Поможет отслеживать физическую активность, сон и здоровье в течение дня.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Набор инструментов для хобби</div>
+                        <div class="gift-reason">Покажет поддержку его увлечений, будь то моделирование, электроника или другое хобби.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Кожаный кошелек</div>
+                        <div class="gift-reason">Стильный и практичный аксессуар, который будет служить долгие годы.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Беспроводная зарядная станция</div>
+                        <div class="gift-reason">Позволит удобно заряжать несколько устройств одновременно без лишних проводов.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Набор для кемпинга</div>
+                        <div class="gift-reason">Подарит возможность комфортно провести время на природе с друзьями или семьей.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Для подруги -->
+            <div id="girlfriend" class="gift-category hidden">
+                <h3>Подарки для подруги</h3>
+                <div class="gift-list">
+                    <div class="gift-item">
+                        <div class="gift-title">Цветы и набор изысканных сладостей</div>
+                        <div class="gift-reason">Классический подарок, который всегда поднимает настроение.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Подарочный набор косметики</div>
+                        <div class="gift-reason">Позволит побаловать себя и уделить время уходу.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Сертификат на совместный мастер-класс</div>
+                        <div class="gift-reason">Подарит новые впечатления и время, проведенное вместе.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Мягкая игрушка</div>
+                        <div class="gift-reason">Милый подарок, который будет напоминать о вашей дружбе.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Шарф</div>
+                        <div class="gift-reason">Стильный аксессуар, который дополнит любой образ.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Фоторамка с вашим совместным фото</div>
+                        <div class="gift-reason">Напомнит о вашей дружбе и важных моментах, которые вы пережили вместе.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Набор для создания украшений</div>
+                        <div class="gift-reason">Позволит проявить творческие способности и создать уникальные аксессуары своими руками.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Подписка на доставку</div>
+                        <div class="gift-reason">Позволит каждый месяц получать набор вкусных и полезных снеков для работы или учебы.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Косметичка</div>
+                        <div class="gift-reason">Поможет удобно хранить и переносить косметику, сохраняя порядок в сумке.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Коробка с ее любимыми лакомствами</div>
+                        <div class="gift-reason">Персонализированный подарок, который покажет, что вы знаете ее вкусовые предпочтения.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Для друга -->
+            <div id="friend" class="gift-category hidden">
+                <h3>Подарки для друга</h3>
+                <div class="gift-list">
+                    <div class="gift-item">
+                        <div class="gift-title">Набор для пикника</div>
+                        <div class="gift-reason">Отличный повод провести время на природе вместе.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Кружка с принтом</div>
+                        <div class="gift-reason">Персонализированный подарок с особым смыслом.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Набор инструментов для хобби</div>
+                        <div class="gift-reason">Покажет поддержку его увлечений.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Сертификат в кино или на концерт</div>
+                        <div class="gift-reason">Возможность вместе провести время и получить новые впечатления.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Беспроводная колонка</div>
+                        <div class="gift-reason">Сделает любую встречу с друзьями веселее с качественным звуком без лишних проводов.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Термос</div>
+                        <div class="gift-reason">Позволит брать с собой горячие напитки на работу, учебу или прогулку.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Настольная лампа с регулируемой яркостью</div>
+                        <div class="gift-reason">Создаст комфортное освещение для работы или чтения, заботясь о зрении друга.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Набор для настольных игр</div>
+                        <div class="gift-reason">Подарит множество веселых вечеров в компании друзей с разными играми на любой вкус.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Футболка с принтом</div>
+                        <div class="gift-reason">Практичный и модный подарок, который можно носить в повседневной жизни.</div>
+                    </div>
+                    <div class="gift-item">
+                        <div class="gift-title">Книга по его интересам</div>
+                        <div class="gift-reason">Покажет, что вы цените его увлечения и поддерживаете стремление к знаниям.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Функция для показа подарков по категории
+        function showGifts(category) {
+            // Скрываем все категории
+            const allCategories = document.querySelectorAll('.gift-category');
+            allCategories.forEach(cat => cat.classList.add('hidden'));
+            
+            // Показываем выбранную категорию
+            const selectedCategory = document.getElementById(category);
+            selectedCategory.classList.remove('hidden');
+            
+            // Скрываем заголовок и описание сайта
+            const header = document.getElementById('header');
+            header.classList.add('hidden');
+            
+            // Показываем кнопку "На главную"
+            const homeButton = document.getElementById('homeButton');
+            homeButton.classList.add('visible');
+            
+            // Прокручиваем к началу контента
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Функция для переключения темы
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const themeButton = document.querySelector('.theme-toggle');
+            if (document.body.classList.contains('dark-theme')) {
+                themeButton.textContent = '☀️ Светлая тема';
+            } else {
+                themeButton.textContent = '🌙 Тёмная тема';
+            }
+        }
+
+        // Функция для возврата на главную страницу
+        function goHome() {
+            // Скрываем все категории подарков
+            const allCategories = document.querySelectorAll('.gift-category');
+            allCategories.forEach(cat => cat.classList.add('hidden'));
+            
+            // Показываем заголовок и описание сайта
+            const header = document.getElementById('header');
+            header.classList.remove('hidden');
+            
+            // Скрываем кнопку "На главную"
+            const homeButton = document.getElementById('homeButton');
+            homeButton.classList.remove('visible');
+            
+            // Прокручиваем к началу
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // При загрузке страницы не показываем никакие категории подарков
+        document.addEventListener('DOMContentLoaded', function() {
+            // Все категории остаются скрытыми
+            const allCategories = document.querySelectorAll('.gift-category');
+            allCategories.forEach(cat => cat.classList.add('hidden'));
+        });
+    </script>
+</body>
+</html>
