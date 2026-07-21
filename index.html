@@ -2,530 +2,1393 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Сердечный вопрос</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Идеи для подарков</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ... (весь ваш существующий CSS, без изменений) ... */
+        :root {
+            --primary-purple: #8B5FBF;
+            --secondary-purple: #9D4EDD;
+            --light-purple: #E0AAFF;
+            --accent-purple: #C77DFF;
+            --dark-purple: #5A189A;
+            --text-color: #333333;
+            --bg-color: #ffffff;
+            --topbar-color: #f8f9ff;
+            --card-color: #ffffff;
+            --shadow: 0 8px 30px rgba(139, 95, 191, 0.08);
+            --shadow-hover: 0 12px 40px rgba(139, 95, 191, 0.15);
+            --intro-border: #E0AAFF;
+            --intro-bg: #fafaff;
+            --howto-bg: #f5f2ff;
+            --gradient: linear-gradient(135deg, #8B5FBF 0%, #9D4EDD 100%);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dark-theme {
+            --primary-purple: #C77DFF;
+            --secondary-purple: #9D4EDD;
+            --light-purple: #5A189A;
+            --accent-purple: #E0AAFF;
+            --dark-purple: #3C096C;
+            --text-color: #f0f0f0;
+            --bg-color: #121212;
+            --topbar-color: #1e1b2e;
+            --card-color: #2d2a3e;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 12px 40px rgba(139, 95, 191, 0.25);
+            --intro-border: #5A189A;
+            --intro-bg: #1e1b2e;
+            --howto-bg: #2a2540;
+            --gradient: linear-gradient(135deg, #5A189A 0%, #7B2CBF 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Quicksand', sans-serif;
         }
 
         body {
-            background: #fdeff2;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 16px;
-            transition: background 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 100px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(139, 95, 191, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(157, 78, 221, 0.03) 0%, transparent 20%);
         }
 
-        .container {
-            background: rgba(255, 255, 255, 0.78);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border-radius: 48px 48px 32px 32px;
-            padding: 32px 24px 40px;
-            max-width: 500px;
-            width: 100%;
-            box-shadow: 0 20px 40px rgba(255, 105, 135, 0.2);
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #ffd9e2;
+        h1, h2, h3, .intro-section p {
+            font-family: 'Playfair Display', serif;
         }
 
-        .slide {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            gap: 18px;
-            animation: fadeSlide 0.5s ease;
-        }
-
-        .slide.active {
-            display: flex;
-        }
-
-        @keyframes fadeSlide {
-            0% { opacity: 0.4; transform: translateY(12px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .slide img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 32px;
-            box-shadow: 0 8px 20px rgba(255, 80, 120, 0.15);
-            margin-bottom: 6px;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .heart-img {
-            width: 120px;
-            height: auto;
-            filter: drop-shadow(0 6px 12px #ff8aa1);
-        }
-
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 12px;
-            flex-wrap: wrap;
-            position: relative;
-            width: 100%;
-            min-height: 80px;
-        }
-
-        .btn {
-            background: #ffb3c6;
-            border: none;
-            border-radius: 60px;
-            padding: 14px 36px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #5e2e3f;
-            box-shadow: 0 6px 0 #d47a92;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            letter-spacing: 0.5px;
-            min-width: 100px;
-            border: 1px solid #ffd0db;
-            position: relative;
-            z-index: 5;
-            touch-action: manipulation;
-        }
-
-        .btn:hover {
-            transform: scale(1.04);
-            background: #ffa5bc;
-            box-shadow: 0 8px 0 #c06a82;
-        }
-
-        .btn:active {
-            transform: scale(0.97);
-        }
-
-        .btn-no {
-            transition: all 0.1s ease;
-            position: relative;
-            z-index: 10;
-        }
-
-        .btn-no:hover {
-            transform: scale(1.04);
-            background: #ffa5bc;
-            box-shadow: 0 8px 0 #c06a82;
-        }
-
-        .btn-next {
-            background: #f7b0c9;
-            padding: 12px 36px;
-            font-size: 1.2rem;
-            box-shadow: 0 5px 0 #b86f88;
-            margin-top: 16px;
-        }
-
-        .btn-next:hover {
-            background: #f09eb9;
-            box-shadow: 0 7px 0 #a85e77;
-        }
-
-        h2 {
-            font-size: 1.9rem;
-            font-weight: 700;
-            color: #572c3b;
-            line-height: 1.4;
-            padding: 0 6px;
-        }
-
-        .sub-text {
-            font-size: 1.05rem;
-            color: #6d3e4e;
-            font-weight: 600;
-            background: rgba(255, 220, 230, 0.5);
-            padding: 14px 18px;
-            border-radius: 80px;
-            line-height: 1.5;
-            max-width: 90%;
-        }
-
-        .long-text {
-            font-size: 1rem;
-            background: rgba(255, 235, 240, 0.7);
-            padding: 18px 20px;
-            border-radius: 40px;
-            line-height: 1.7;
-            color: #462b34;
-            font-weight: 500;
-            max-width: 100%;
-            text-align: center;
-        }
-
-        input[type="date"] {
-            background: #ffeef2;
-            border: 2px solid #ffb7cc;
-            border-radius: 60px;
-            padding: 14px 24px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #3e2330;
-            outline: none;
-            width: 90%;
-            max-width: 280px;
-            text-align: center;
-            transition: 0.2s;
-        }
-
-        input[type="date"]:focus {
-            border-color: #f27c9b;
-            box-shadow: 0 0 0 4px #ffccda;
-        }
-
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: hue-rotate(300deg) saturate(2);
-            padding: 6px;
-        }
-
-        .activity-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            width: 100%;
-            margin: 10px 0;
-        }
-
-        .activity-btn {
-            background: #ffeef2;
-            border: 2px solid #ffc1d2;
-            border-radius: 60px;
-            padding: 10px 18px 10px 10px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 0 #d48c9f;
-            width: 100%;
-            text-align: left;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: #3f2631;
-        }
-
-        .activity-btn:hover {
-            transform: scale(1.01);
-            background: #ffdce6;
-            border-color: #f595b2;
-        }
-
-        .activity-btn img {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid #ffb0c7;
-            background: #ffd9e2;
-            flex-shrink: 0;
-        }
-
-        .activity-btn span {
-            flex: 1;
-        }
-
-        .hearts-container {
+        .topbar {
             position: fixed;
             top: 0;
             left: 0;
+            right: 0;
+            background: var(--topbar-color);
+            padding: 20px 40px;
+            box-shadow: 0 4px 20px rgba(139, 95, 191, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(139, 95, 191, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 8px;
+            flex: 1;
+            justify-content: center;
+            margin: 0 40px;
+        }
+
+        .category-btn {
+            padding: 12px 20px;
+            background: transparent;
+            border: 2px solid var(--light-purple);
+            border-radius: 50px;
+            color: var(--primary-purple);
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 600;
+            transition: var(--transition);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-btn:hover {
+            background: var(--gradient);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 95, 191, 0.3);
+        }
+
+        .category-btn.active {
+            background: var(--gradient);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 4px 15px rgba(139, 95, 191, 0.2);
+        }
+
+        .category-icon {
+            font-size: 1.3em;
+            opacity: 0.9;
+            filter: grayscale(100%) contrast(0.5);
+            transition: filter 0.3s;
+        }
+
+        .category-btn:hover .category-icon,
+        .category-btn.active .category-icon {
+            filter: grayscale(0%) contrast(1);
+        }
+
+        .silhouette-woman { color: #8B5FBF; }
+        .silhouette-man { color: #5A189A; }
+        .silhouette-women { color: #9D4EDD; }
+        .silhouette-men { color: #7B2CBF; }
+        .silhouette-heart { color: #FF69B4; }
+        .silhouette-handshake { color: #6B8E23; }
+
+        .dark-theme .silhouette-woman { color: #E0AAFF; }
+        .dark-theme .silhouette-man { color: #C77DFF; }
+        .dark-theme .silhouette-women { color: #9D4EDD; }
+        .dark-theme .silhouette-men { color: #7B2CBF; }
+        .dark-theme .silhouette-heart { color: #FF69B4; }
+        .dark-theme .silhouette-handshake { color: #9ACD32; }
+
+        .topbar-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .theme-toggle, .home-button, .profile-btn, .google-login-btn {
+            padding: 12px 20px;
+            background: var(--gradient);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle:hover, .home-button:hover, .profile-btn:hover, .google-login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 95, 191, 0.4);
+        }
+
+        .home-button {
+            background: transparent;
+            border: 2px solid var(--light-purple);
+            color: var(--primary-purple);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .home-button.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .home-button.visible:hover {
+            background: var(--gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        .profile-btn {
+            background: transparent;
+            border: 2px solid var(--light-purple);
+            color: var(--primary-purple);
+            position: relative;
+        }
+
+        .profile-btn:hover {
+            background: var(--gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        .profile-btn .avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .profile-dropdown {
+            position: absolute;
+            top: 110%;
+            right: 0;
+            background: var(--card-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-hover);
+            padding: 10px 0;
+            min-width: 200px;
+            display: none;
+            border: 1px solid rgba(139, 95, 191, 0.1);
+            z-index: 1001;
+        }
+
+        .profile-dropdown.show {
+            display: block;
+        }
+
+        .profile-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95em;
+        }
+
+        .profile-dropdown a:hover {
+            background: rgba(139, 95, 191, 0.1);
+            color: var(--primary-purple);
+        }
+
+        .google-login-btn {
+            background: transparent;
+            border: 2px solid var(--light-purple);
+            color: var(--primary-purple);
+        }
+
+        .google-login-btn:hover {
+            background: var(--gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-color);
+        }
+
+        .user-info img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .main-content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+
+        .intro-section {
+            background: var(--intro-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 2px solid var(--intro-border);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .intro-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .intro-section p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .wb-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 8px;
+            font-size: 0.9em;
+            color: #FF69B4;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 105, 180, 0.2);
+        }
+
+        .wb-badge i {
+            font-size: 1.2em;
+        }
+
+        .gifts-container {
+            width: 100%;
+            margin-bottom: 60px;
+        }
+
+        .gift-category {
+            background: var(--card-color);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            border: 1px solid rgba(139, 95, 191, 0.1);
+            transition: var(--transition);
+        }
+
+        .gift-category:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .gift-category h3 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .gift-category h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .gift-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .gift-item {
+            background: linear-gradient(145deg, rgba(139, 95, 191, 0.05), rgba(157, 78, 221, 0.02));
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-purple);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gift-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 9999;
+            background: linear-gradient(90deg, transparent, rgba(139, 95, 191, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .gift-item:hover::before {
+            left: 100%;
+        }
+
+        .gift-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(139, 95, 191, 0.15);
+        }
+
+        .gift-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(139, 95, 191, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .gift-item:hover .gift-image {
+            transform: scale(1.02);
+        }
+
+        .gift-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+            color: var(--dark-purple);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gift-title::before {
+            content: '✦';
+            font-size: 1.1em;
+            color: var(--accent-purple);
+        }
+
+        .gift-reason {
+            font-size: 1em;
+            line-height: 1.6;
+            color: var(--text-color);
+            opacity: 0.9;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .gift-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .favorite-btn {
+            background: none;
+            border: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            transition: var(--transition);
+            color: #ccc;
+            padding: 5px 10px;
+        }
+
+        .favorite-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .favorite-btn.active {
+            color: #FF69B4;
+        }
+
+        .marketplace-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            flex: 1;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .gift-item:hover .marketplace-links {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .marketplace-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 8px;
+            color: #FF69B4;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid rgba(255, 105, 180, 0.2);
+            flex: 1;
+            justify-content: center;
+            min-width: 200px;
+        }
+
+        .marketplace-link:hover {
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+            border-color: transparent;
+        }
+
+        .marketplace-link i {
+            font-size: 1.2em;
+        }
+
+        .how-to-section {
+            background: var(--howto-bg);
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
             overflow: hidden;
+            margin-top: 40px;
         }
 
-        .heart-particle {
+        .how-to-section::before {
+            content: '';
             position: absolute;
-            font-size: 2rem;
-            animation: floatUp 2.5s ease-in forwards;
-            pointer-events: none;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
         }
 
-        @keyframes floatUp {
-            0% { opacity: 1; transform: translateY(0) scale(0.6) rotate(0deg); }
-            100% { opacity: 0; transform: translateY(-300px) scale(1.3) rotate(30deg); }
+        .how-to-title {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--dark-purple);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .how-to-title::before {
+            content: '❖';
+            font-size: 1.5em;
+            color: var(--accent-purple);
+        }
+
+        .how-to-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .step {
+            background: var(--card-color);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(139, 95, 191, 0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(139, 95, 191, 0.1);
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 95, 191, 0.15);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-purple);
+            font-size: 1.2em;
+        }
+
+        .step-description {
+            color: var(--text-color);
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gift-category:not(.hidden) {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @media (max-width: 1200px) {
+            .category-buttons {
+                margin: 0 20px;
+            }
+            .gift-list {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            .how-to-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .topbar {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            .category-buttons {
+                margin: 0;
+                order: 3;
+                width: 100%;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .topbar-controls {
+                order: 2;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            body {
+                padding-top: 160px;
+            }
+            .header h1 {
+                font-size: 2.8em;
+            }
+            .marketplace-link {
+                min-width: 150px;
+            }
+            .profile-dropdown {
+                right: -20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px;
+            }
+            .gift-list {
+                grid-template-columns: 1fr;
+            }
+            .gift-category {
+                padding: 25px;
+            }
+            .header h1 {
+                font-size: 2.2em;
+            }
+            .intro-section, .how-to-section {
+                padding: 25px;
+            }
+            .category-btn {
+                padding: 10px 16px;
+                font-size: 0.85em;
+            }
+            .marketplace-links {
+                justify-content: center;
+            }
+            .marketplace-link {
+                min-width: 100%;
+            }
+            .how-to-title {
+                font-size: 1.6em;
+            }
         }
 
         @media (max-width: 480px) {
-            .container { padding: 24px 16px; }
-            h2 { font-size: 1.6rem; }
-            .btn { padding: 12px 24px; font-size: 1.1rem; min-width: 80px; }
-            .btn-group { gap: 18px; }
-            .activity-btn { font-size: 0.95rem; padding: 8px 12px; }
+            .topbar {
+                padding: 15px;
+            }
+            .logo-text {
+                font-size: 1.2em;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .intro-section p, .how-to-section p {
+                font-size: 1.1em;
+            }
+            .theme-toggle, .home-button, .profile-btn, .google-login-btn {
+                padding: 10px 15px;
+                font-size: 0.8em;
+            }
+            body {
+                padding-top: 180px;
+            }
+            .gift-image {
+                height: 180px;
+            }
+            .category-btn {
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+            .category-btn span:not(.category-icon) {
+                display: none;
+            }
+            .category-btn .category-icon {
+                font-size: 1.5em;
+            }
+            .how-to-section {
+                padding: 20px;
+            }
+            .step {
+                padding: 20px;
+            }
+            .profile-dropdown {
+                right: -10px;
+                min-width: 170px;
+            }
+        }
+
+        .highlight {
+            color: var(--secondary-purple);
+            font-weight: 600;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(139, 95, 191, 0.1);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-purple);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.9em;
+            border-top: 1px solid rgba(139, 95, 191, 0.1);
+        }
+
+        .hover-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(139, 95, 191, 0.9);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .gift-item:hover .hover-hint {
+            opacity: 1;
+        }
+
+        .favorites-counter {
+            background: #FF69B4;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 0.7em;
+            margin-left: 5px;
         }
     </style>
 </head>
 <body>
-
-<div class="container" id="appContainer">
-    <!-- Слайд 1 -->
-    <div class="slide active" id="slide1">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ff8a9e;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ffb3c6;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='60' cy='60' r='50' fill='url(%23g1)'/%3E%3Cpath d='M60 30 Q75 10 95 25 Q115 40 100 60 L60 95 L20 60 Q5 40 25 25 Q45 10 60 30Z' fill='%23ff4d6d' opacity='0.9'/%3E%3C/svg%3E" alt="сердце" class="heart-img">
-        <h2>Ты меня любишь?</h2>
-        <div class="btn-group" id="btnGroup1">
-            <button class="btn" id="btnYes1">Да</button>
-            <button class="btn btn-no" id="btnNo1">Нет</button>
+    <!-- Верхняя панель -->
+    <div class="topbar">
+        <div class="logo">
+            <div class="logo-icon">✦</div>
+            <div class="logo-text">Gift Ideas</div>
         </div>
-    </div>
-
-    <!-- Слайд 2: котята -->
-    <div class="slide" id="slide2">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23ffe4eb' rx='30'/%3E%3Ccircle cx='100' cy='120' r='55' fill='%23f5b7c5'/%3E%3Ccircle cx='200' cy='120' r='55' fill='%23f5b7c5'/%3E%3Ccircle cx='80' cy='100' r='14' fill='%233d2a33'/%3E%3Ccircle cx='120' cy='100' r='14' fill='%233d2a33'/%3E%3Ccircle cx='180' cy='100' r='14' fill='%233d2a33'/%3E%3Ccircle cx='220' cy='100' r='14' fill='%233d2a33'/%3E%3Cpath d='M100 150 Q150 175 200 150' stroke='%23c44a6b' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='55' cy='70' r='18' fill='%23f5b7c5'/%3E%3Ccircle cx='245' cy='70' r='18' fill='%23f5b7c5'/%3E%3Ctext x='130' y='50' font-size='40' fill='%23ff4d6d'%3E❤️%3C/text%3E%3Ctext x='40' y='50' font-size='32' fill='%23ff4d6d'%3E❤️%3C/text%3E%3Ctext x='220' y='50' font-size='32' fill='%23ff4d6d'%3E❤️%3C/text%3E%3C/svg%3E" alt="котята обнимаются" style="border-radius: 40px; background: #ffe4eb; width:100%;">
-        <div class="long-text">
-            я так рада что ты меня любишь, я тебя тоже очень сильно люблю котенок💋, ты самый дорогой для меня человек,<br>
-            я хочу чтобы мы были вместе всегда, надеюсь нас ждет счастливое будущее вдвоем, безумно люблю тебя кот
+        <div class="category-buttons">
+            <button class="category-btn" onclick="showGifts('mom')">
+                <span class="category-icon silhouette-woman">👩</span>
+                <span>Маме</span>
+            </button>
+            <button class="category-btn" onclick="showGifts('dad')">
+                <span class="category-icon silhouette-man">👨</span>
+                <span>Папе</span>
+            </button>
+            <button class="category-btn" onclick="showGifts('sister')">
+                <span class="category-icon silhouette-women">👭</span>
+                <span>Сестре</span>
+            </button>
+            <button class="category-btn" onclick="showGifts('brother')">
+                <span class="category-icon silhouette-men">👬</span>
+                <span>Брату</span>
+            </button>
+            <button class="category-btn" onclick="showGifts('girlfriend')">
+                <span class="category-icon silhouette-heart">❤️</span>
+                <span>Подруге</span>
+            </button>
+            <button class="category-btn" onclick="showGifts('friend')">
+                <span class="category-icon silhouette-handshake">🤝</span>
+                <span>Другу</span>
+            </button>
         </div>
-        <button class="btn btn-next" id="btnNext2">далее</button>
-    </div>
-
-    <!-- Слайд 3 -->
-    <div class="slide" id="slide3">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ffb07c;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ff8a9e;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='60' cy='60' r='48' fill='url(%23g2)'/%3E%3Ccircle cx='60' cy='50' r='18' fill='%23ffebd6'/%3E%3Ccircle cx='60' cy='50' r='8' fill='%23ffb07c'/%3E%3Cpath d='M45 75 Q60 90 75 75' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" alt="цветок" class="heart-img">
-        <h2>хочешь ли ты со мной погулять?)</h2>
-        <div class="btn-group" id="btnGroup3">
-            <button class="btn" id="btnYes3">Да</button>
-            <button class="btn btn-no" id="btnNo3">Нет</button>
-        </div>
-    </div>
-
-    <!-- Слайд 4: дата -->
-    <div class="slide" id="slide4">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23a8d8ea;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23f7b0c9;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='10' y='20' width='100' height='80' rx='18' fill='url(%23g3)'/%3E%3Crect x='10' y='20' width='100' height='25' rx='18' fill='%23ff8a9e'/%3E%3Ccircle cx='35' cy='55' r='4' fill='%23fff'/%3E%3Ccircle cx='55' cy='55' r='4' fill='%23fff'/%3E%3Ccircle cx='75' cy='55' r='4' fill='%23fff'/%3E%3Ccircle cx='95' cy='55' r='4' fill='%23fff'/%3E%3Ccircle cx='35' cy='75' r='4' fill='%23fff'/%3E%3Ccircle cx='55' cy='75' r='4' fill='%23fff'/%3E%3Ccircle cx='75' cy='75' r='4' fill='%23fff'/%3E%3Ccircle cx='95' cy='75' r='4' fill='%23fff'/%3E%3C/svg%3E" alt="календарь" style="width:90px;">
-        <h2 style="font-size:1.7rem;">когда ты хочешь со мной погулять?</h2>
-        <input type="date" id="datePicker" min="2026-07-21" max="2026-07-31" value="2026-07-21">
-        <button class="btn btn-next" id="btnNext4" style="margin-top: 10px;">далее</button>
-    </div>
-
-    <!-- Слайд 5: активность -->
-    <div class="slide" id="slide5">
-        <h2 style="font-size:1.6rem;">круто! теперь выбери что ты хочешь поделать</h2>
-        <div class="activity-grid">
-            <div class="activity-btn" data-activity="погулять" data-past="прогулялись">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cdefs%3E%3ClinearGradient id='a1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ffb3c6;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ff8a9e;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='40' cy='40' r='35' fill='url(%23a1)'/%3E%3Ccircle cx='30' cy='32' r='10' fill='%23fff' opacity='0.8'/%3E%3Ccircle cx='50' cy='32' r='10' fill='%23fff' opacity='0.8'/%3E%3Ccircle cx='30' cy='32' r='5' fill='%233d2a33'/%3E%3Ccircle cx='50' cy='32' r='5' fill='%233d2a33'/%3E%3Cpath d='M30 52 Q40 62 50 52' stroke='%233d2a33' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M20 45 L30 55 M60 45 L50 55' stroke='%233d2a33' stroke-width='3' fill='none'/%3E%3C/svg%3E" alt="гулять">
-                <span>погулять</span>
-            </div>
-            <div class="activity-btn" data-activity="съездить куда-нибудь погулять в город" data-past="съездили погулять в город">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cdefs%3E%3ClinearGradient id='a2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23a8d8ea;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23f7b0c9;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='40' cy='40' r='35' fill='url(%23a2)'/%3E%3Crect x='15' y='30' width='50' height='35' rx='4' fill='%23fff' opacity='0.7'/%3E%3Crect x='25' y='10' width='30' height='25' rx='3' fill='%23ffd9e2'/%3E%3Crect x='30' y='18' width='20' height='8' rx='2' fill='%23ffb3c6'/%3E%3Crect x='20' y='45' width='10' height='20' fill='%23ff8a9e'/%3E%3Crect x='50' y='45' width='10' height='20' fill='%23ff8a9e'/%3E%3C/svg%3E" alt="город">
-                <span>съездить куда нибудь погулять в город</span>
-            </div>
-            <div class="activity-btn" data-activity="посидеть вместе дома" data-past="посидели дома">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cdefs%3E%3ClinearGradient id='a3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f7d794;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23f5b7c5;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='40' cy='40' r='35' fill='url(%23a3)'/%3E%3Cpolygon points='20,45 40,15 60,45' fill='%23ff8a9e'/%3E%3Crect x='25' y='45' width='30' height='25' fill='%23fff' opacity='0.7'/%3E%3Crect x='32' y='52' width='8' height='12' fill='%23f7d794'/%3E%3Crect x='28' y='30' width='6' height='12' fill='%23fff' opacity='0.5'/%3E%3C/svg%3E" alt="дом">
-                <span>посидеть вместе дома</span>
-            </div>
-            <div class="activity-btn" data-activity="сходить в кино или в развлекательные центры" data-past="сходили в кино">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cdefs%3E%3ClinearGradient id='a4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%239f86c7;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23f7b0c9;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='40' cy='40' r='35' fill='url(%23a4)'/%3E%3Crect x='12' y='25' width='56' height='35' rx='8' fill='%23fff' opacity='0.7'/%3E%3Ccircle cx='28' cy='42' r='6' fill='%23ff8a9e'/%3E%3Ccircle cx='44' cy='42' r='6' fill='%23ffb3c6'/%3E%3Ccircle cx='60' cy='42' r='6' fill='%239f86c7'/%3E%3Crect x='20' y='15' width='40' height='8' rx='4' fill='%23ffd9e2'/%3E%3C/svg%3E" alt="кино">
-                <span>сходить в кино или в развлекательные центры</span>
+        <div class="topbar-controls">
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span>🌙</span> Тема
+            </button>
+            <button class="home-button" id="homeButton" onclick="goHome()">
+                <span>◀</span> Назад
+            </button>
+            <div style="position:relative;">
+                <button class="profile-btn" onclick="toggleProfile()">
+                    <span class="avatar" id="profileAvatar">👤</span>
+                    <span id="profileName">Профиль</span>
+                    <span id="favoritesCounter" class="favorites-counter" style="display:none;">0</span>
+                </button>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <a href="#" onclick="showFavorites(); return false;">
+                        <i class="fas fa-heart" style="color:#FF69B4;"></i> Избранное
+                        <span id="dropdownFavCount" class="favorites-counter" style="display:none;">0</span>
+                    </a>
+                    <a href="#" id="authAction" onclick="handleAuth(); return false;">
+                        <i class="fas fa-sign-in-alt"></i> <span id="authText">Войти через Google</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Слайд 6: финал -->
-    <div class="slide" id="slide6">
-        <h2 id="finalMessage" style="font-size:1.8rem;">ура, жду 21.07.2026 чтобы мы погуляли, люблю тебя❤️</h2>
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ff4d6d;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ff8a9e;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='60' cy='60' r='45' fill='url(%23g4)' opacity='0.3'/%3E%3Cpath d='M60 25 Q80 0 100 20 Q120 40 100 65 L60 105 L20 65 Q0 40 20 20 Q40 0 60 25Z' fill='url(%23g4)'/%3E%3C/svg%3E" style="width:110px;">
+    <!-- Основной контент -->
+    <main class="main-content">
+        <div class="header" id="header">
+            <h1>Найди идеальный подарок</h1>
+        </div>
+
+        <div class="intro-section">
+            <p>Ищете вдохновение для подарка? Мы собрали <span class="highlight">тысячи уникальных идей</span> для ваших близких.</p>
+            <p>При каждом обновлении страницы появляются новые подарки, которые вы можете сохранить в избранное.</p>
+            <div class="wb-badge">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Все товары доступны на Wildberries</span>
+            </div>
+        </div>
+
+        <div class="gifts-container" id="giftsContainer">
+            <!-- Категории будут заполняться динамически -->
+        </div>
+
+        <!-- Секция "Как это работает?" -->
+        <div class="how-to-section">
+            <div class="how-to-title">Как это работает?</div>
+            <div class="how-to-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Выберите категорию</div>
+                        <div class="step-description">Выберите категорию получателя в меню выше, чтобы увидеть персонализированные идеи подарков.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Изучите идеи</div>
+                        <div class="step-description">Каждая идея содержит подробное описание и ссылку для покупки на популярном маркетплейсе.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Сохраните в избранное</div>
+                        <div class="step-description">Нажмите на сердечко, чтобы сохранить понравившийся подарок и найти его позже в профиле.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="footer">
+        <p>© 2025 Gift Ideas. Сделано с любовью для ваших близких.</p>
     </div>
-</div>
 
-<div class="hearts-container" id="heartsContainer"></div>
+    <script>
+        // -------------------- БОЛЬШАЯ БАЗА ПОДАРКОВ (100+ уникальных) --------------------
+        const allGifts = {
+            mom: [
+                { title: "Плед с рукавами", reason: "Уютный и практичный подарок, который позволит маме согреться и заниматься своими делами одновременно.", img: "https://i.pinimg.com/1200x/4f/1e/d6/4f1ed6ceba7d5f2e76690d4264222487.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=плед+с+рукавами" },
+                { title: "Набор качественной косметики", reason: "Позволит маме почувствовать заботу о себе и уделить время собственному уходу.", img: "https://i.pinimg.com/736x/8a/2f/b8/8a2fb8dd88bfcd1e85dce74d11c56a9d.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+косметики+подарочный" },
+                { title: "Фотоальбом с семейными фотографиями", reason: "Вызовет теплые воспоминания и покажет, как вы цените семейные моменты.", img: "https://i.pinimg.com/736x/ad/c6/0f/adc60f535495613c7ac44e07ce04b5cb.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=фотоальбом+семейный" },
+                { title: "Комнатное растение в красивом горшке", reason: "Добавит уюта в дом и будет напоминать о вашей заботе каждый день.", img: "https://i.pinimg.com/1200x/17/71/15/1771151f715ddfa99fd2fa98ffc3e1d8.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=комнатное+растение+в+горшке" },
+                { title: "Сертификат в спа-салон", reason: "Подарит маме возможность расслабиться и отдохнуть от повседневных забот.", img: "https://i.pinimg.com/736x/9f/d1/c1/9fd1c1a8c8b7b5879e019aa97bc27636.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=сертификат+в+спа+салон" },
+                { title: "Ароматическая лампа с маслами", reason: "Создаст уютную атмосферу и поможет расслабиться после долгого дня.", img: "https://i.pinimg.com/736x/3a/8b/6f/3a8b6f8a9b4c5d6e7f8a9b0c1d2e3f4a.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=аромалампа" },
+                { title: "Книга-бестселлер", reason: "Погрузит в увлекательный мир литературы и подарит часы удовольствия.", img: "https://i.pinimg.com/736x/1b/2c/3d/1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e.jpg", link: "https://www.wildberries.ru/catalog/knigi/hudozhestvennaya-literatura" },
+                { title: "Набор для чаепития", reason: "Позволит насладиться ароматным чаем в уютной обстановке.", img: "https://i.pinimg.com/736x/2c/3d/4e/2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+чая" },
+                { title: "Подушка с фотопечатью", reason: "Персонализированный подарок с семейным фото, который будет согревать душу.", img: "https://i.pinimg.com/736x/3d/4e/5f/3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=подушка+с+фотографией" },
+                { title: "Набор для выпечки", reason: "Вдохновит на кулинарные эксперименты и порадует домашней выпечкой.", img: "https://i.pinimg.com/736x/4e/5f/6a/4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+выпечки" },
+                { title: "Шкатулка для украшений", reason: "Элегантное место для хранения драгоценностей, которое будет радовать глаз.", img: "https://i.pinimg.com/736x/5f/6a/7b/5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=шкатулка+для+украшений" },
+                { title: "Набор для ванны", reason: "Позволит устроить спа-вечер и насладиться расслабляющими процедурами.", img: "https://i.pinimg.com/736x/6a/7b/8c/6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+ванны" },
+                { title: "Светильник-проектор звездного неба", reason: "Создаст романтическую атмосферу и украсит любую комнату.", img: "https://i.pinimg.com/736x/7b/8c/9d/7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=проектор+звездного+неба" },
+                { title: "Набор для рисования", reason: "Позволит проявить творческие способности и создать настоящие шедевры.", img: "https://i.pinimg.com/736x/8c/9d/0e/8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+рисования" }
+            ],
+            dad: [
+                { title: "Многофункциональный инструмент", reason: "Практичный подарок, который пригодится в хозяйстве и будет оценен по достоинству.", img: "https://i.pinimg.com/736x/fa/4e/75/fa4e758f479b651c221abf560861b47b.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=мультитул+инструмент" },
+                { title: "Книга по его интересам", reason: "Покажет, что вы знаете его увлечения и поддерживаете их.", img: "https://i.pinimg.com/736x/7d/05/f0/7d05f0fea03760d8d5c1f857a0dccbdb.jpg", link: "https://www.wildberries.ru/catalog/knigi/hudozhestvennaya-literatura" },
+                { title: "Набор для барбекю", reason: "Позволит папе почувствовать себя шеф-поваром на свежем воздухе.", img: "https://i.pinimg.com/1200x/dc/78/95/dc7895daa8ff5abf0ef67a8ca7ea3b0e.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+барбекю" },
+                { title: "Умные часы", reason: "Современный гаджет, который поможет следить за здоровьем и оставаться на связи.", img: "https://i.pinimg.com/736x/89/ad/ee/89adeebf374a03f73c23f48be5c2f95e.jpg", link: "https://www.wildberries.ru/catalog/elektronika/smart-chasy-i-fitnes-braslety/smart-chasy" },
+                { title: "Беспроводные наушники", reason: "Позволят наслаждаться музыкой и аудиокнигами без лишних проводов.", img: "https://i.pinimg.com/736x/44/cb/07/44cb07c808c57ec33cd0cfbae3321478.jpg", link: "https://www.wildberries.ru/catalog/elektronika/audio-i-video/naushniki-i-garnitury/besprovodnye-naushniki" },
+                { title: "Электронный билет на матч", reason: "Подарит яркие эмоции и позволит насладиться любимым видом спорта.", img: "https://i.pinimg.com/736x/2a/3b/4c/2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=билеты+на+спорт" },
+                { title: "Набор для рыбалки", reason: "Отличный подарок для любителя рыбной ловли, который оценит качество снаряжения.", img: "https://i.pinimg.com/736x/3b/4c/5d/3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+рыбалки" },
+                { title: "Блендер", reason: "Поможет готовить полезные смузи и коктейли для всей семьи.", img: "https://i.pinimg.com/736x/4c/5d/6e/4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=блендер" },
+                { title: "Набор для кемпинга", reason: "Вдохновит на новые приключения и отдых на природе.", img: "https://i.pinimg.com/736x/5d/6e/7f/5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+кемпинга" },
+                { title: "Кофемашина", reason: "Позволит наслаждаться ароматным кофе каждое утро.", img: "https://i.pinimg.com/736x/6e/7f/8a/6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=кофемашина" },
+                { title: "Набор для дома", reason: "Практичные инструменты, которые всегда пригодятся в хозяйстве.", img: "https://i.pinimg.com/736x/7f/8a/9b/7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+инструментов" }
+            ],
+            sister: [
+                { title: "Бижутерия ручной работы", reason: "Дополнит ее образ и покажет ваше внимание к ее стилю.", img: "https://i.pinimg.com/736x/cd/aa/71/cdaa71d2f97d3c59d9d94062e5f96942.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=бижутерия+подарок" },
+                { title: "Сумка", reason: "Практичный и модный аксессуар, который будет использоваться ежедневно.", img: "https://i.pinimg.com/736x/7e/b2/21/7eb22118a01781aa008a307b4491d062.jpg", link: "https://www.wildberries.ru/catalog/zhenshchinam/sumki" },
+                { title: "Сертификат в любимый магазин", reason: "Позволит ей самой выбрать то, что действительно хочет.", img: "https://i.pinimg.com/736x/b8/ff/bc/b8ffbcddf2d0e6edf4e6bf44efd9602a.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=подарочный+сертификат" },
+                { title: "Набор для творчества", reason: "Поможет развить хобби и провести время с удовольствием.", img: "https://i.pinimg.com/736x/9f/60/66/9f606648f4db2df3f79727a9837c1f34.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+творчества+взрослым" },
+                { title: "Селфи-кольцо с подсветкой", reason: "Практичный подарок для создания красивых фотографий.", img: "https://i.pinimg.com/736x/df/6b/dc/df6bdcf0d4e8fa3d6b57d426c5ac3cd0.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=селфи+кольцо+светодиодное" },
+                { title: "Набор для йоги", reason: "Поможет поддерживать физическую форму и душевное равновесие.", img: "https://i.pinimg.com/736x/4b/5c/6d/4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=коврик+для+йоги" },
+                { title: "Косметичка", reason: "Стильная вещь, которая всегда пригодится в путешествиях.", img: "https://i.pinimg.com/736x/5c/6d/7e/5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=косметичка" },
+                { title: "Зеркало с подсветкой", reason: "Поможет идеально наносить макияж и ухаживать за собой.", img: "https://i.pinimg.com/736x/6d/7e/8f/6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=зеркало+с+подсветкой" },
+                { title: "Набор для пилинга", reason: "Обеспечит качественный уход за кожей тела.", img: "https://i.pinimg.com/736x/7e/8f/9a/7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+пилинга" }
+            ],
+            brother: [
+                { title: "Игровая консоль", reason: "Подарит часы увлекательного времяпрепровождения.", img: "https://i.pinimg.com/736x/58/9f/dd/589fdda7344f3b4e68648d84b36723d1.jpg", link: "https://www.wildberries.ru/catalog/elektronika/igrovye-pristavki-i-aksessuary/igrovye-pristavki" },
+                { title: "Спортивный инвентарь", reason: "Поддержит его активный образ жизни и заботу о здоровье.", img: "https://i.pinimg.com/736x/01/b6/d1/01b6d1e037383d4f1b20ea3b79afa1d8.jpg", link: "https://www.wildberries.ru/catalog/sport/sportivnyy-inventar" },
+                { title: "Гаджет", reason: "Будет оценен по достоинству, если брат увлекается технологиями.", img: "https://i.pinimg.com/736x/d8/55/7d/d8557dc45326fee9c5293e222cb42706.jpg", link: "https://www.wildberries.ru/catalog/elektronika" },
+                { title: "Настольная игра", reason: "Отличный повод провести время вместе с семьей или друзьями.", img: "https://i.pinimg.com/1200x/ce/6b/d7/ce6bd774e6c353d659887e0cf164714e.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=настольные+игры+для+компании" },
+                { title: "Билеты на концерт", reason: "Подарит незабываемые эмоции и покажет, что вы знаете его вкусы.", img: "https://i.pinimg.com/1200x/5e/43/6e/5e436eb4e5b89fe1cd791fc80642770c.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=билеты+на+концерт" },
+                { title: "Набор для кемпинга", reason: "Вдохновит на новые приключения и отдых на природе.", img: "https://i.pinimg.com/736x/5a/6b/7c/5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+кемпинга" },
+                { title: "Кроссовки", reason: "Стильная и удобная обувь для активного образа жизни.", img: "https://i.pinimg.com/736x/6b/7c/8d/6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=кроссовки" }
+            ],
+            girlfriend: [
+                { title: "Цветы и набор сладостей", reason: "Классический подарок, который всегда поднимает настроение.", img: "https://i.pinimg.com/1200x/bd/9f/35/bd9f35af7b2591d94c05271e529d81a8.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=цветы+доставка" },
+                { title: "Подарочный набор косметики", reason: "Позволит побаловать себя и уделить время уходу.", img: "https://i.pinimg.com/736x/a0/7d/3d/a07d3d20a834f9a8980ca973a1dc8018.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=подарочный+набор+косметики" },
+                { title: "Сертификат на мастер-класс", reason: "Подарит новые впечатления и время, проведенное вместе.", img: "https://i.pinimg.com/736x/eb/87/96/eb8796f7d04ee0ac3ab0e249af4558b4.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=сертификат+на+мастер+класс" },
+                { title: "Мягкая игрушка", reason: "Милый подарок, который будет напоминать о вашей дружбе.", img: "https://i.pinimg.com/736x/3b/3c/2b/3b3c2b1f3ac43a35601dc33936b87c5f.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=большая+мягкая+игрушка" },
+                { title: "Дизайнерский шарф", reason: "Стильный аксессуар, который дополнит любой образ.", img: "https://i.pinimg.com/736x/1e/82/9c/1e829c92587e609e6e0291586778abbe.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=дизайнерский+шарф" },
+                { title: "Ароматический диффузор", reason: "Создаст уютную атмосферу и наполнит дом приятными ароматами.", img: "https://i.pinimg.com/736x/6a/7b/8c/6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=диффузор+ароматический" },
+                { title: "Набор для маникюра", reason: "Позволит создавать красивые ногти прямо дома.", img: "https://i.pinimg.com/736x/7b/8c/9d/7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+маникюра" },
+                { title: "Ежедневник", reason: "Поможет планировать дела и записывать важные моменты.", img: "https://i.pinimg.com/736x/8c/9d/0e/8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=ежедневник" }
+            ],
+            friend: [
+                { title: "Набор для пикника", reason: "Отличный повод провести время на природе вместе.", img: "https://i.pinimg.com/1200x/64/78/0f/64780f399e922a9fec8e913cd7b68b10.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+пикника" },
+                { title: "Кружка с персонализацией", reason: "Персонализированный подарок с особым смыслом.", img: "https://i.pinimg.com/736x/a1/83/28/a183283dd93fc79659d7db2ec5bc5812.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=кружка+с+персонализацией" },
+                { title: "Набор для хобби", reason: "Покажет поддержку его увлечений.", img: "https://i.pinimg.com/736x/b9/7f/31/b97f31c6d112ae22c9e693b3d0362bcb.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+хобби+мужской" },
+                { title: "Сертификат в кино", reason: "Возможность вместе провести время и получить новые впечатления.", img: "https://i.pinimg.com/736x/62/f1/0c/62f10c608678ad9a0592814597103496.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=сертификат+в+кино" },
+                { title: "Беспроводная колонка", reason: "Сделает любую встречу с друзьями веселее с качественным звуком.", img: "https://i.pinimg.com/1200x/77/9d/03/779d0379abeeaf0775b16c694379dfa9.jpg", link: "https://www.wildberries.ru/catalog/elektronika/audio-i-video/kolonki-i-audiosistemy/portativnye-kolonki" },
+                { title: "Набор для гриля", reason: "Позволит стать королем пикника и удивить друзей.", img: "https://i.pinimg.com/736x/7a/8b/9c/7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+гриля" },
+                { title: "Портативное зарядное устройство", reason: "Всегда пригодится для подзарядки телефона в дороге.", img: "https://i.pinimg.com/736x/8b/9c/0d/8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=пауэрбанк" },
+                { title: "Набор для коктейлей", reason: "Позволит устраивать вечеринки с профессиональными коктейлями.", img: "https://i.pinimg.com/736x/9c/0d/1e/9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f.jpg", link: "https://www.wildberries.ru/catalog/0/search.aspx?search=набор+для+коктейлей" }
+            ]
+        };
 
-<script>
-    (function() {
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
+        // Дополнительный пул изображений для новых подарков (на случай, если нужно добавить больше)
+        const fallbackImages = [
+            "https://i.pinimg.com/736x/1a/2b/3c/1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d.jpg",
+            "https://i.pinimg.com/736x/2b/3c/4d/2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e.jpg",
+            "https://i.pinimg.com/736x/3c/4d/5e/3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f.jpg"
+        ];
 
-        let chosenDate = '21.07.2026';
-        let chosenPastActivity = 'погуляли';
+        // -------------------- СОСТОЯНИЕ --------------------
+        let currentCategory = null;
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        let usedGiftSets = JSON.parse(localStorage.getItem('usedGiftSets')) || {};
 
-        function showSlide(index) {
-            slides.forEach((s, i) => {
-                s.classList.toggle('active', i === index);
-            });
-            currentSlide = index;
-            document.getElementById('appContainer').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        function createHeartsBurst(originElement) {
-            const container = document.getElementById('heartsContainer');
-            const rect = originElement.getBoundingClientRect();
-            const cx = rect.left + rect.width/2;
-            const cy = rect.top + rect.height/2;
-            const emojis = ['❤️', '💗', '💖', '💘', '💝'];
-            for (let i=0; i<30; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart-particle';
-                heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-                const angle = Math.random() * Math.PI * 2;
-                const dist = 80 + Math.random() * 180;
-                const dx = Math.cos(angle) * dist;
-                const dy = Math.sin(angle) * dist - 50;
-                heart.style.left = (cx + dx) + 'px';
-                heart.style.top = (cy + dy) + 'px';
-                heart.style.fontSize = (1.4 + Math.random() * 2) + 'rem';
-                heart.style.animationDuration = (1.8 + Math.random() * 1.5) + 's';
-                container.appendChild(heart);
-                setTimeout(() => heart.remove(), 3500);
+        // -------------------- ГЕНЕРАЦИЯ УНИКАЛЬНЫХ ПОДАРКОВ --------------------
+        function getUniqueGifts(category, count = 6) {
+            const pool = allGifts[category] || [];
+            // Если в пуле меньше запрошенного количества, дублируем с изменениями
+            let available = [...pool];
+            
+            // Проверяем, какие подарки уже были показаны в этой категории
+            const usedTitles = usedGiftSets[category] || [];
+            
+            // Фильтруем использованные
+            let filtered = available.filter(g => !usedTitles.includes(g.title));
+            
+            // Если недостаточно новых, перемешиваем все и берем с начала
+            if (filtered.length < count) {
+                // Сбрасываем историю для этой категории, если закончились новые идеи
+                usedGiftSets[category] = [];
+                filtered = shuffleArray([...available]);
             }
-        }
-
-        // Убегающие кнопки "Нет" с проверкой границ
-        function setupNoButtons() {
-            const noBtns = document.querySelectorAll('.btn-no');
-            noBtns.forEach(btn => {
-                const moveButton = function(e) {
-                    e.preventDefault();
-                    const btnWidth = btn.offsetWidth || 100;
-                    const btnHeight = btn.offsetHeight || 60;
-                    const padding = 20;
-                    
-                    // Получаем безопасные границы с учетом скролла
-                    const maxX = window.innerWidth - btnWidth - padding;
-                    const maxY = window.innerHeight - btnHeight - padding;
-                    const minX = padding;
-                    const minY = padding;
-                    
-                    // Генерируем случайную позицию в пределах видимой области
-                    let x = Math.random() * (maxX - minX) + minX;
-                    let y = Math.random() * (maxY - minY) + minY;
-                    
-                    // Дополнительная проверка, чтобы не выходила за экран
-                    x = Math.max(minX, Math.min(x, maxX));
-                    y = Math.max(minY, Math.min(y, maxY));
-                    
-                    btn.style.position = 'fixed';
-                    btn.style.left = x + 'px';
-                    btn.style.top = y + 'px';
-                    btn.style.zIndex = '1000';
-                    btn.style.transform = 'scale(1)';
-                };
-
-                btn.addEventListener('mouseover', moveButton);
-                btn.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    moveButton(e);
-                });
-            });
-        }
-
-        // Сброс позиции кнопок "Нет" при ресайзе и загрузке
-        function resetNoButtons() {
-            document.querySelectorAll('.btn-no').forEach(btn => {
-                btn.style.position = 'relative';
-                btn.style.left = 'auto';
-                btn.style.top = 'auto';
-                btn.style.zIndex = 'auto';
-                btn.style.transform = 'none';
-            });
-        }
-
-        // Переходы
-        document.getElementById('btnYes1').addEventListener('click', function() {
-            createHeartsBurst(this);
-            resetNoButtons();
-            showSlide(1);
-        });
-
-        document.getElementById('btnNext2').addEventListener('click', function() {
-            resetNoButtons();
-            showSlide(2);
-        });
-
-        document.getElementById('btnYes3').addEventListener('click', function() {
-            createHeartsBurst(this);
-            resetNoButtons();
-            showSlide(3);
-        });
-
-        document.getElementById('btnNext4').addEventListener('click', function() {
-            const dateInput = document.getElementById('datePicker');
-            if (dateInput.value) {
-                const parts = dateInput.value.split('-');
-                chosenDate = parts[2] + '.' + parts[1] + '.' + parts[0];
-            } else {
-                chosenDate = '21.07.2026';
-            }
-            resetNoButtons();
-            showSlide(4);
-        });
-
-        // Выбор активности
-        document.querySelectorAll('.activity-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                chosenPastActivity = this.getAttribute('data-past') || 'погуляли';
-                
-                const finalMsg = document.getElementById('finalMessage');
-                finalMsg.innerText = `ура, жду ${chosenDate} чтобы мы ${chosenPastActivity}, люблю тебя❤️`;
-                showSlide(5);
-                
-                // Финальные сердечки
-                const container = document.getElementById('heartsContainer');
-                for (let i=0; i<20; i++) {
-                    setTimeout(() => {
-                        const heart = document.createElement('div');
-                        heart.className = 'heart-particle';
-                        heart.innerText = ['❤️', '💗', '💖', '💘', '💝'][Math.floor(Math.random()*5)];
-                        heart.style.left = (5 + Math.random() * 90) + '%';
-                        heart.style.top = (5 + Math.random() * 90) + '%';
-                        heart.style.fontSize = (1.8 + Math.random() * 2.2) + 'rem';
-                        heart.style.animationDuration = (2 + Math.random() * 1.8) + 's';
-                        container.appendChild(heart);
-                        setTimeout(() => heart.remove(), 3500);
-                    }, i * 80);
+            
+            // Перемешиваем и берем нужное количество
+            const shuffled = shuffleArray([...filtered]);
+            const selected = shuffled.slice(0, count);
+            
+            // Сохраняем использованные названия
+            const used = usedGiftSets[category] || [];
+            selected.forEach(g => {
+                if (!used.includes(g.title)) {
+                    used.push(g.title);
                 }
             });
-        });
+            usedGiftSets[category] = used;
+            localStorage.setItem('usedGiftSets', JSON.stringify(usedGiftSets));
+            
+            return selected;
+        }
 
-        setupNoButtons();
-
-        // Сброс позиции при ресайзе
-        window.addEventListener('resize', function() {
-            resetNoButtons();
-        });
-
-        window.addEventListener('load', function() {
-            resetNoButtons();
-            // Установка даты
-            const today = new Date().toISOString().split('T')[0];
-            const picker = document.getElementById('datePicker');
-            picker.setAttribute('min', today);
-            picker.setAttribute('max', '2026-07-31');
-            if (today > '2026-07-31') {
-                picker.setAttribute('min', '2026-07-21');
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
             }
-            picker.value = '2026-07-21';
-        });
+            return arr;
+        }
 
-        document.getElementById('datePicker').addEventListener('change', function() {
-            const parts = this.value.split('-');
-            if (parts.length === 3) {
-                chosenDate = parts[2] + '.' + parts[1] + '.' + parts[0];
+        // -------------------- ОТОБРАЖЕНИЕ ПОДАРКОВ --------------------
+        function renderGifts(category) {
+            const container = document.getElementById('giftsContainer');
+            const categoryData = getUniqueGifts(category, 6);
+
+            const categoryNames = {
+                mom: 'Для мамы',
+                dad: 'Для папы',
+                sister: 'Для сестры',
+                brother: 'Для брата',
+                girlfriend: 'Для подруги',
+                friend: 'Для друга'
+            };
+
+            // Удаляем старые категории
+            const allCategories = container.querySelectorAll('.gift-category');
+            allCategories.forEach(cat => cat.remove());
+
+            // Создаем новую
+            const div = document.createElement('div');
+            div.id = category;
+            div.className = 'gift-category';
+            div.innerHTML = `<h3>${categoryNames[category]}</h3><div class="gift-list"></div>`;
+            container.appendChild(div);
+
+            const list = div.querySelector('.gift-list');
+            categoryData.forEach(gift => {
+                const isFavorite = favorites.some(f => f.title === gift.title && f.category === category);
+                const item = document.createElement('div');
+                item.className = 'gift-item';
+                item.innerHTML = `
+                    <img src="${gift.img}" alt="${gift.title}" class="gift-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                    <div class="gift-title">${gift.title}</div>
+                    <div class="gift-reason">${gift.reason}</div>
+                    <div class="gift-actions">
+                        <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite('${category}', '${gift.title}', this)">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <div class="marketplace-links">
+                            <a href="${gift.link}" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hover-hint">Наведите для ссылки</div>
+                `;
+                list.appendChild(item);
+            });
+
+            div.classList.remove('hidden');
+            updateFavoritesCounter();
+            setTimeout(() => animateImages(), 100);
+        }
+
+        function animateImages() {
+            const images = document.querySelectorAll('.gift-image');
+            images.forEach((img, index) => {
+                img.style.opacity = '0';
+                img.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    img.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    img.style.opacity = '1';
+                    img.style.transform = 'scale(1)';
+                }, 100 * index);
+            });
+        }
+
+        // -------------------- ПОКАЗ КАТЕГОРИИ --------------------
+        function showGifts(category) {
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.getElementById('header').classList.add('hidden');
+            document.querySelector('.intro-section').classList.add('hidden');
+            document.querySelector('.how-to-section').classList.add('hidden');
+            document.getElementById('homeButton').classList.add('visible');
+
+            currentCategory = category;
+            renderGifts(category);
+            window.scrollTo({ top: 100, behavior: 'smooth' });
+        }
+
+        // -------------------- ГЛАВНАЯ --------------------
+        function goHome() {
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('header').classList.remove('hidden');
+            document.querySelector('.intro-section').classList.remove('hidden');
+            document.querySelector('.how-to-section').classList.remove('hidden');
+            document.getElementById('homeButton').classList.remove('visible');
+
+            const container = document.getElementById('giftsContainer');
+            const allCategories = container.querySelectorAll('.gift-category');
+            allCategories.forEach(cat => cat.remove());
+
+            currentCategory = null;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // -------------------- ИЗБРАННОЕ --------------------
+        function toggleFavorite(category, title, btn) {
+            if (!currentUser) {
+                alert('Пожалуйста, войдите в аккаунт, чтобы добавлять подарки в избранное.');
+                return;
+            }
+            const index = favorites.findIndex(f => f.title === title && f.category === category);
+            if (index > -1) {
+                favorites.splice(index, 1);
+                btn.classList.remove('active');
+            } else {
+                const allGiftsFlat = Object.values(allGifts).flat();
+                const gift = allGiftsFlat.find(g => g.title === title);
+                if (gift) {
+                    favorites.push({ ...gift, category });
+                    btn.classList.add('active');
+                }
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoritesCounter();
+        }
+
+        function updateFavoritesCounter() {
+            const count = favorites.length;
+            const counter = document.getElementById('favoritesCounter');
+            const dropdownCounter = document.getElementById('dropdownFavCount');
+            if (count > 0) {
+                counter.style.display = 'inline';
+                counter.textContent = count;
+                dropdownCounter.style.display = 'inline';
+                dropdownCounter.textContent = count;
+            } else {
+                counter.style.display = 'none';
+                dropdownCounter.style.display = 'none';
+            }
+        }
+
+        function showFavorites() {
+            if (!currentUser) {
+                alert('Пожалуйста, войдите в аккаунт, чтобы просмотреть избранное.');
+                return;
+            }
+            if (favorites.length === 0) {
+                alert('У вас пока нет избранных подарков.');
+                return;
+            }
+
+            document.getElementById('profileDropdown').classList.remove('show');
+
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('header').classList.add('hidden');
+            document.querySelector('.intro-section').classList.add('hidden');
+            document.querySelector('.how-to-section').classList.add('hidden');
+            document.getElementById('homeButton').classList.add('visible');
+
+            const container = document.getElementById('giftsContainer');
+            const allCategories = container.querySelectorAll('.gift-category');
+            allCategories.forEach(cat => cat.remove());
+
+            const div = document.createElement('div');
+            div.id = 'favorites';
+            div.className = 'gift-category';
+            div.innerHTML = `<h3>❤️ Избранное (${favorites.length})</h3><div class="gift-list"></div>`;
+            container.appendChild(div);
+
+            const list = div.querySelector('.gift-list');
+            favorites.forEach(gift => {
+                const item = document.createElement('div');
+                item.className = 'gift-item';
+                item.innerHTML = `
+                    <img src="${gift.img}" alt="${gift.title}" class="gift-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                    <div class="gift-title">${gift.title}</div>
+                    <div class="gift-reason">${gift.reason}</div>
+                    <div class="gift-actions">
+                        <button class="favorite-btn active" onclick="toggleFavorite('${gift.category}', '${gift.title}', this)">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <div class="marketplace-links">
+                            <a href="${gift.link}" target="_blank" class="marketplace-link">
+                                <i class="fas fa-shopping-bag"></i> Купить на Wildberries
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hover-hint">Наведите для ссылки</div>
+                `;
+                list.appendChild(item);
+            });
+
+            div.classList.remove('hidden');
+            currentCategory = 'favorites';
+            window.scrollTo({ top: 100, behavior: 'smooth' });
+            setTimeout(() => animateImages(), 100);
+        }
+
+        // -------------------- ПРОФИЛЬ --------------------
+        function toggleProfile() {
+            document.getElementById('profileDropdown').classList.toggle('show');
+        }
+
+        document.addEventListener('click', function(e) {
+            const profile = document.querySelector('.profile-btn');
+            const dropdown = document.getElementById('profileDropdown');
+            if (profile && !profile.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('show');
             }
         });
 
-        showSlide(0);
-        window.finalResult = { date: chosenDate, pastActivity: chosenPastActivity };
-        
-        // Для отладки - можно посмотреть в консоли
-        console.log('Итоговый выбор:', window.finalResult);
-    })();
-</script>
+        // -------------------- АВТОРИЗАЦИЯ --------------------
+        function handleAuth() {
+            if (currentUser) {
+                currentUser = null;
+                localStorage.removeItem('currentUser');
+                document.getElementById('profileAvatar').textContent = '👤';
+                document.getElementById('profileName').textContent = 'Профиль';
+                document.getElementById('authText').textContent = 'Войти через Google';
+                document.getElementById('authAction').innerHTML = '<i class="fas fa-sign-in-alt"></i> <span id="authText">Войти через Google</span>';
+                // Не удаляем избранное при выходе
+                updateFavoritesCounter();
+                if (currentCategory === 'favorites') {
+                    goHome();
+                }
+                if (currentCategory && currentCategory !== 'favorites') {
+                    renderGifts(currentCategory);
+                }
+                document.getElementById('profileDropdown').classList.remove('show');
+                alert('Вы вышли из аккаунта.');
+            } else {
+                const user = { name: 'Пользователь', email: 'user@gmail.com', avatar: '👤' };
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                document.getElementById('profileAvatar').textContent = '👤';
+                document.getElementById('profileName').textContent = user.name;
+                document.getElementById('authText').textContent = 'Выйти';
+                document.getElementById('authAction').innerHTML = '<i class="fas fa-sign-out-alt"></i> <span id="authText">Выйти</span>';
+                document.getElementById('profileDropdown').classList.remove('show');
+                alert('Добро пожаловать, ' + user.name + '!');
+            }
+        }
 
+        // -------------------- ТЕМА --------------------
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const themeButton = document.querySelector('.theme-toggle');
+            if (document.body.classList.contains('dark-theme')) {
+                themeButton.innerHTML = '<span>☀️</span> Светлая';
+            } else {
+                themeButton.innerHTML = '<span>🌙</span> Тёмная';
+            }
+            localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+        }
+
+        // -------------------- ИНИЦИАЛИЗАЦИЯ --------------------
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                document.querySelector('.theme-toggle').innerHTML = '<span>☀️</span> Светлая';
+            }
+
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                document.getElementById('profileAvatar').textContent = '👤';
+                document.getElementById('profileName').textContent = currentUser.name;
+                document.getElementById('authText').textContent = 'Выйти';
+                document.getElementById('authAction').innerHTML = '<i class="fas fa-sign-out-alt"></i> <span id="authText">Выйти</span>';
+            }
+
+            const savedFavorites = localStorage.getItem('favorites');
+            if (savedFavorites) {
+                favorites = JSON.parse(savedFavorites);
+            }
+            updateFavoritesCounter();
+
+            // Инициализируем usedGiftSets, если их нет
+            if (!localStorage.getItem('usedGiftSets')) {
+                usedGiftSets = {};
+                localStorage.setItem('usedGiftSets', JSON.stringify(usedGiftSets));
+            } else {
+                usedGiftSets = JSON.parse(localStorage.getItem('usedGiftSets'));
+            }
+
+            goHome();
+        });
+    </script>
 </body>
 </html>
